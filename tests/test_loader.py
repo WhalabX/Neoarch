@@ -542,10 +542,21 @@ def test_parse_pipx_list_basic():
     result = _parse_pipx_list(json.dumps(_PIPX_LIST_JSON))
     assert len(result) == 3
     assert result[0]["name"] == "black"
+    assert result[0]["pkg"] == "black"
     assert result[0]["version"] == "24.1.0"
     assert result[0]["id"] == "black"
     assert result[0]["source"] == "pipx"
     assert result[0]["new_version"] == ""
+
+
+def test_parse_pipx_list_keeps_venv_and_distinct_dist_name():
+    payload = {"venvs": {
+        "my-tool": {"metadata": {"main_package": {
+            "package": "my_tool", "package_version": "1.2.3"}}},
+    }}
+    result = _parse_pipx_list(json.dumps(payload))
+    assert result[0]["name"] == "my-tool"
+    assert result[0]["pkg"] == "my_tool"
 
 
 def test_parse_pipx_list_none_empty():
@@ -699,8 +710,11 @@ def test_pipx_outdated_probe_supports_flag(monkeypatch):
 
 
 def test_pipx_updates_fallback_dry_run(monkeypatch):
+    calls = []
+
     def fake_run_cmd(cmd, timeout=90, env=None):
         if cmd[:2] == ["pipx", "runpip"]:
+            calls.append(list(cmd))
             return FakeCompletedProcess(stdout="Would install black-24.3.0\n")
         return FakeCompletedProcess(stdout=json.dumps(_PIPX_LIST_JSON))
 
@@ -718,6 +732,12 @@ def test_pipx_updates_fallback_dry_run(monkeypatch):
     assert result[0]["id"] == "black"
     assert result[0]["new_version"] == "24.3.0"
     assert result[0]["source"] == "pipx"
+    # Regression: `pipx runpip VENV install ...` (no stray leading `pip`,
+    # which pipx rejects with 'unknown command "pip"').
+    assert ["pipx", "runpip", "black", "install", "--upgrade", "--dry-run",
+            "black"] in calls
+    for cmd in calls:
+        assert cmd[3] == "install"
 
 
 def test_pipx_fallback_skips_pinned(monkeypatch):

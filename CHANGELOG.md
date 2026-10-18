@@ -10,6 +10,24 @@ dialog shows after an update.
 
 ---
 
+## 3.4.2 — 2026-10-18
+
+### Bug Fixes
+
+- **What's New shows the complete release notes again.** Changelog bullets that
+  wrapped across multiple source lines were truncated mid-sentence in the
+  dialog; wrapped lines are now joined back together, and bold / inline-code
+  markup renders instead of showing its raw punctuation.
+
+- **pipx app updates are detected again.** The modern-pipx fallback passed a
+  stray `pip` argument to `pipx runpip`, which pipx rejects with
+  `unknown command "pip"`, so no pipx app was ever reported as updatable. It
+  now runs `pipx runpip VENV install --upgrade --dry-run PACKAGE` and checks the
+  real distribution name, so apps you would fix with `pipx upgrade-all` appear
+  on the Updates page.
+
+---
+
 ## 3.4.1 — 2026-10-11
 
 ### New Features
@@ -29,13 +47,6 @@ dialog shows after an update.
   Notifications → Events now has a dedicated switch for the "No internet
   connection" / "Connection restored" notices, so they can be turned on or off
   without affecting the errors or updates channels.
-
-### Bug Fixes
-
-- **What's New shows the complete release notes again.** Changelog bullets that
-  wrapped across multiple source lines were truncated mid-sentence in the
-  dialog; wrapped lines are now joined back together, and bold / inline-code
-  markup renders instead of showing its raw punctuation.
 
 ---
 
