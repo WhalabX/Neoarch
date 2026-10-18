@@ -97,8 +97,15 @@ def parse_changelog(path: Optional[str] = None) -> List[Dict]:
             label = line[4:].strip()
             current["sections"].setdefault(label, [])
             current_section = label
-        elif line.startswith("- ") and current is not None and current_section:
-            current["sections"][current_section].append(line[2:].strip().rstrip())
+        elif current is not None and current_section:
+            sections = current["sections"]
+            if line.startswith("- "):
+                sections[current_section].append(line[2:].strip().rstrip())
+            elif raw[:1].isspace() and sections.get(current_section):
+                # Indented continuation of the previous bullet: the changelog
+                # wraps long items across several source lines.
+                sections[current_section][-1] = (
+                    f"{sections[current_section][-1]} {line}".strip())
 
     return blocks
 

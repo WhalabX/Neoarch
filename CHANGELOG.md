@@ -30,6 +30,13 @@ dialog shows after an update.
   connection" / "Connection restored" notices, so they can be turned on or off
   without affecting the errors or updates channels.
 
+### Bug Fixes
+
+- **What's New shows the complete release notes again.** Changelog bullets that
+  wrapped across multiple source lines were truncated mid-sentence in the
+  dialog; wrapped lines are now joined back together, and bold / inline-code
+  markup renders instead of showing its raw punctuation.
+
 ---
 
 ## 3.4.0 — 2026-10-01

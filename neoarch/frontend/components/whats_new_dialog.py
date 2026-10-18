@@ -11,6 +11,9 @@ Two modes:
   release summary and an Update button that opens the GitHub release page.
 """
 
+import html
+import re
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
@@ -26,6 +29,18 @@ def _open_url(url):
     from PyQt6.QtGui import QDesktopServices
     from PyQt6.QtCore import QUrl
     QDesktopServices.openUrl(QUrl(url))
+
+
+_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+_CODE_RE = re.compile(r"`(.+?)`")
+
+
+def _rich(text):
+    """Escape then render the small markdown subset used in the changelog."""
+    out = html.escape(text, quote=False)
+    out = _BOLD_RE.sub(r"<b>\1</b>", out)
+    out = _CODE_RE.sub(r"<code>\1</code>", out)
+    return out
 
 
 class WhatIsNewDialog(QDialog):
@@ -166,7 +181,8 @@ class WhatIsNewDialog(QDialog):
                 " border: none;")
             dot.setFixedWidth(10)
             row.addWidget(dot, 0, Qt.AlignmentFlag.AlignTop)
-            text = QLabel(item)
+            text = QLabel(_rich(item))
+            text.setTextFormat(Qt.TextFormat.RichText)
             text.setWordWrap(True)
             text.setStyleSheet(
                 f"font-size: {Fonts.BASE}; color: {Colors.TEXT_2};"

@@ -19,6 +19,23 @@ def test_version_key_ordering():
     assert rn.version_key("garbage") == (0,)
 
 
+def test_parse_changelog_joins_wrapped_bullets(tmp_path):
+    path = tmp_path / "CHANGELOG.md"
+    path.write_text(
+        "# Changelog\n\n## 1.0 — 2026-01-01\n\n### New Features\n\n"
+        "- **Bold lead.** first part\n"
+        "  continues on the next source line and\n"
+        "  ends here.\n\n"
+        "- second item\n",
+        encoding="utf-8")
+    blocks = rn.parse_changelog(str(path))
+    assert blocks[0]["sections"]["New Features"] == [
+        "**Bold lead.** first part continues on the next source line and "
+        "ends here.",
+        "second item",
+    ]
+
+
 def test_parse_changelog_shapes():
     blocks = rn.parse_changelog()
     assert blocks, "CHANGELOG.md should parse to at least one block"
