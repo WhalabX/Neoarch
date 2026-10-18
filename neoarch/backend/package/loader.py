@@ -382,9 +382,11 @@ def _parse_pipx_list(stdout):
             continue
         meta = venv.get('metadata') if isinstance(venv.get('metadata'), dict) else venv
         main = meta.get('main_package') if isinstance(meta, dict) else None
+        dist = name
         if isinstance(main, dict):
             version = (main.get('package_version') or main.get('version') or '').strip()
             pinned = bool(main.get('pinned'))
+            dist = (main.get('package') or '').strip() or name
         elif isinstance(meta, dict):
             version = (meta.get('package_version') or '').strip()
             pinned = False
@@ -393,6 +395,7 @@ def _parse_pipx_list(stdout):
             pinned = False
         packages.append({
             'name': name,
+            'pkg': dist,
             'version': version,
             'new_version': '',
             'id': name,
@@ -486,11 +489,16 @@ def _pipx_outdated_supported():
     return _PIPX_OUTDATED_SUPPORTED
 
 
-def _check_one_pipx_dry_run(name):
-    """Probe one pipx app for a newer version with a read-only dry run."""
+def _check_one_pipx_dry_run(venv, dist=None):
+    """Probe one pipx app for a newer version with a read-only dry run.
+
+    ``venv`` is the pipx venv name (what ``pipx runpip`` expects); ``dist`` is
+    the distribution to check on the index (defaults to the venv name).
+    """
+    dist = dist or venv
     try:
         r = _run_cmd(
-            ["pipx", "runpip", name, "pip", "install", "--upgrade", "--dry-run", name],
+            ["pipx", "runpip", venv, "install", "--upgrade", "--dry-run", dist],
             timeout=120,
             env=sys_utils.c_locale_env())
     except Exception:
@@ -498,9 +506,9 @@ def _check_one_pipx_dry_run(name):
     if not r:
         return {}
     outdated = _parse_pipx_dry_run(r.stdout)
-    key = name.lower().replace('_', '-')
+    key = dist.lower().replace('_', '-')
     if key in outdated:
-        return {name: outdated[key]}
+        return {venv: outdated[key]}
     return {}
 
 
@@ -524,7 +532,8 @@ def _pipx_install_state():
     latest = {}
     if upgradeable:
         with ThreadPoolExecutor(max_workers=min(8, len(upgradeable))) as ex:
-            futures = {ex.submit(_check_one_pipx_dry_run, p['id']): p for p in upgradeable}
+            futures = {ex.submit(_check_one_pipx_dry_run, p['id'], p.get('pkg')): p
+                       for p in upgradeable}
             for fut in as_completed(futures):
                 found = fut.result()
                 if found:
