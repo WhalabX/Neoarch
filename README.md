@@ -247,9 +247,7 @@ else put a coin in the jar. Every release since has been built on top of
 that backing.
 
 Your words live on in [this sponsorship note](https://buymeacoffee.com/sanjayadanushka/c/20640619) —
-the very same page the app's About → Community tab links to. If you would
-like to join him and keep NeoArch independent and ad-free, you can
-[buy the project a coffee](https://www.buymeacoffee.com/sanjayadanushka).
+the very same page the app's About → Community tab links to.
 
 ---
 
