@@ -233,6 +233,7 @@ On Arch, system `pip` usually triggers `externally-managed-environment` — pref
 
 ## Credits &amp; acknowledgment
 
+- **Ferreol** — our first sponsor ([@ferreol](https://github.com/ferreol)). His early backing kept NeoArch alive from day one, long before anyone else backed the project. Thank you.
 - **ArchCanary** — the PKGBUILD security scanner is built on rule sets ported from [ArchCanary](https://github.com/musqz/archcanary) (MIT) by [musqz](https://github.com/musqz), our pre-install scan gate. Thanks for the groundwork.
 - Built on the shoulders of the Arch Linux ecosystem — **pacman**, **AUR helpers** (yay, paru), **Flatpak**, **npm**, **PyQt6**, and the snapshot backends **Timeshift** &amp; **Snapper**.
 

@@ -706,6 +706,9 @@ msgstr "Trouvez tout depuis pacman, AUR, Flatpak et npm"
 msgid "Find apps in large libraries fast"
 msgstr "Trouvez rapidement des applications dans de grandes bibliothèques"
 
+msgid "First Sponsor"
+msgstr "Premier sponsor"
+
 msgid "Flatpak sandboxed · npm user mode."
 msgstr "Flatpak en bac à sable · mode utilisateur npm."
 
@@ -813,6 +816,9 @@ msgstr "Masquer les paquets installés"
 
 msgid "High signal"
 msgstr "Signal fort"
+
+msgid "His early backing kept NeoArch alive from day one — the very first person to sponsor the project."
+msgstr "Son soutien précoce a maintenu NeoArch en vie dès le premier jour — il a été la première personne à sponsoriser le projet."
 
 msgid "Hold package"
 msgstr "Retenir le paquet"
@@ -1830,6 +1836,12 @@ msgstr "Sources"
 
 msgid "Sources & Plugins"
 msgstr "Sources et plugins"
+
+msgid "Sponsor"
+msgstr "Sponsor"
+
+msgid "Sponsors"
+msgstr "Sponsors"
 
 msgid "Start"
 msgstr "Démarrer"

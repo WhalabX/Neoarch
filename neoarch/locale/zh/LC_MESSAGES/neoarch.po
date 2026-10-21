@@ -706,6 +706,9 @@ msgstr "从 pacman、AUR、Flatpak 和 npm 找到任何内容"
 msgid "Find apps in large libraries fast"
 msgstr "在大型库中快速查找应用"
 
+msgid "First Sponsor"
+msgstr "首位赞助者"
+
 msgid "Flatpak sandboxed · npm user mode."
 msgstr "Flatpak 沙盒 · npm 用户模式。"
 
@@ -813,6 +816,9 @@ msgstr "隐藏已安装的软件包"
 
 msgid "High signal"
 msgstr "高信号"
+
+msgid "His early backing kept NeoArch alive from day one — the very first person to sponsor the project."
+msgstr "他早期的支持让 NeoArch 从第一天起便得以延续——他是首位赞助该项目的人。"
 
 msgid "Hold package"
 msgstr "保持软件包"
@@ -1830,6 +1836,12 @@ msgstr "来源"
 
 msgid "Sources & Plugins"
 msgstr "来源与插件"
+
+msgid "Sponsor"
+msgstr "赞助者"
+
+msgid "Sponsors"
+msgstr "赞助者"
 
 msgid "Start"
 msgstr "启动"

@@ -32,6 +32,32 @@ _WEBSITE_URL = "https://neoarch.dpdns.org"
 _AUR_URL = "https://aur.archlinux.org/packages/neoarch-git"
 _WIKI_URL = "https://github.com/neoarch712/Neoarch/wiki"
 
+# ── Sponsors ─────────────────────────────────────────────────────────
+# Ordered by contribution — the first entry is honoured as "First Sponsor".
+# Drop a portrait at assets/icons/app/<avatar> to use it; otherwise the
+# sponsor's initial is shown.
+_SPONSORS = (
+    {
+        "name": "Ferreol",
+        "handle": "ferreol",
+        "url": "https://github.com/ferreol",
+        "avatar": "sponsor-ferreol.png",
+        "copy": "ferreol",
+    },
+)
+
+
+def _sponsor_copy(key):
+    """Translatable sponsor copy, resolved at render time (not import time)."""
+    if key == "ferreol":
+        return {
+            "role": _("First Sponsor"),
+            "note": _("His early backing kept NeoArch alive from day one "
+                      "\u2014 the very first person to sponsor the project."),
+        }
+    return {"role": _("Sponsor"), "note": ""}
+
+
 _BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..")
 
 
@@ -1583,6 +1609,83 @@ class _CommunityTab(QWidget):
             _("\u2197 Wiki"),
             lambda: _open_url(_WIKI_URL)))
         cl.addWidget(founder)
+
+        # ── Sponsors card ──
+        if _SPONSORS:
+            sponsors = _card()
+            svl = QVBoxLayout(sponsors)
+            svl.setContentsMargins(24, 22, 24, 22)
+            svl.setSpacing(16)
+            svl.addWidget(_card_title(_("Sponsors")))
+
+            for sponsor in _SPONSORS:
+                copy = _sponsor_copy(sponsor["copy"])
+                row = QHBoxLayout()
+                row.setSpacing(16)
+
+                badge = QLabel()
+                badge.setFixedSize(48, 48)
+                badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                av_path = os.path.join(
+                    str(ASSETS_DIR), "icons", "app", sponsor.get("avatar", ""))
+                apm = QPixmap(av_path) if (
+                    sponsor.get("avatar") and os.path.exists(av_path)
+                ) else QPixmap()
+                if not apm.isNull():
+                    badge.setPixmap(apm.scaled(
+                        48, 48, Qt.AspectRatioMode.KeepAspectRatio,
+                        Qt.TransformationMode.SmoothTransformation))
+                    badge.setStyleSheet(
+                        "border-radius: 24px; border: none;")
+                else:
+                    badge.setText((sponsor["name"] or "?")[0].upper())
+                    badge.setStyleSheet(
+                        f"border-radius: 24px; border: none;"
+                        f" background: {Colors.ACCENT_SOFT};"
+                        f" color: {Colors.ACCENT}; font-size: {Fonts.XL};"
+                        f" font-weight: {Fonts.BOLD};")
+                row.addWidget(badge)
+
+                info = QVBoxLayout()
+                info.setSpacing(2)
+
+                head = QHBoxLayout()
+                head.setSpacing(8)
+                name_lbl = QLabel(sponsor["name"])
+                name_lbl.setStyleSheet(
+                    f"font-size: {Fonts.CARD_TITLE}; font-weight: {Fonts.BOLD};"
+                    f" color: {Colors.TEXT}; background: transparent;"
+                    " border: none;")
+                head.addWidget(name_lbl)
+                handle_lbl = QLabel(f"@{sponsor['handle']}")
+                handle_lbl.setStyleSheet(
+                    f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
+                    " background: transparent; border: none;")
+                head.addWidget(handle_lbl)
+                head.addStretch()
+                role_lbl = QLabel(copy["role"])
+                role_lbl.setStyleSheet(
+                    f"font-size: {Fonts.XS}; font-weight: {Fonts.SEMI};"
+                    f" color: {Colors.ACCENT}; background: {Colors.ACCENT_SOFT};"
+                    f" border-radius: {Radii.SM}px; padding: 3px 10px;")
+                head.addWidget(role_lbl)
+                info.addLayout(head)
+
+                if copy["note"]:
+                    note_lbl = QLabel(copy["note"])
+                    note_lbl.setWordWrap(True)
+                    note_lbl.setStyleSheet(
+                        f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
+                        " background: transparent; border: none;")
+                    info.addWidget(note_lbl)
+                row.addLayout(info, 1)
+
+                row.addWidget(_secondary_btn(
+                    _("\u2197 GitHub"),
+                    lambda checked=False, u=sponsor["url"]: _open_url(u)))
+                svl.addLayout(row)
+
+            cl.addWidget(sponsors)
 
         # ── Support card with QR ──
         support = _card()

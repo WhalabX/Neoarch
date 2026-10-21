@@ -706,6 +706,9 @@ msgstr "pacman, AUR, Flatpak සහ npm වලින් ඕනෑම දෙය�
 msgid "Find apps in large libraries fast"
 msgstr "විශාල පුස්තකාලවල යෙදුම් ඉක්මනින් සොයන්න"
 
+msgid "First Sponsor"
+msgstr "පළමු අනුග්‍රහකය"
+
 msgid "Flatpak sandboxed · npm user mode."
 msgstr "Flatpak හුදකලා · npm පරිශීලක ආකාරය."
 
@@ -813,6 +816,9 @@ msgstr "ස්ථාපිත පැකේජ සඟවන්න"
 
 msgid "High signal"
 msgstr "අධි සංඥාව"
+
+msgid "His early backing kept NeoArch alive from day one — the very first person to sponsor the project."
+msgstr "ඔහුගේ මුල් අනුග්‍රහය නිසා දින එක සිටම NeoArch ජීවය තුළ පවර්තා කිරීය — ඔහු මෙම සැපියාවට අනුග්‍රහකත්වය ලබාදුන්නාකන පළමු පුද්ගලයා විය."
 
 msgid "Hold package"
 msgstr "පැකේජය රඳවන්න"
@@ -1830,6 +1836,12 @@ msgstr "මූලාශ්‍ර"
 
 msgid "Sources & Plugins"
 msgstr "මූලාශ්‍ර සහ ප්ලගීන"
+
+msgid "Sponsor"
+msgstr "අනුග්‍රහකය"
+
+msgid "Sponsors"
+msgstr "අනුග්‍රහකයෝ"
 
 msgid "Start"
 msgstr "ආරම්භ කරන්න"
