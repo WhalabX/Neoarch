@@ -24,7 +24,7 @@ pkgver=1.2.beta
 pkgrel=1
 
 # Update source to latest commit
-source=("git+https://github.com/Sanjaya-Danushka/Neoarch.git#tag=v1.2-beta")
+source=("git+https://github.com/neoarch712/Neoarch.git#tag=v1.2-beta")
 
 # Update checksums
 sha256sums=('SKIP')  # For git sources
@@ -52,11 +52,11 @@ pkgver=1.2.beta
 pkgrel=1
 pkgdesc="A beautiful, unified GUI package manager for Arch Linux"
 arch=('x86_64')
-url="https://github.com/Sanjaya-Danushka/Neoarch"
+url="https://github.com/neoarch712/Neoarch"
 license=('GPL-3.0-or-later')
 depends=('python' 'python-pyqt6' 'python-requests' 'qt6-svg' 'flatpak' 'nodejs' 'npm')
 makedepends=('git')
-source=("git+https://github.com/Sanjaya-Danushka/Neoarch.git#tag=v1.2-beta")
+source=("git+https://github.com/neoarch712/Neoarch.git#tag=v1.2-beta")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -139,7 +139,7 @@ ssh -T aur@aur.archlinux.org
 
 Should output:
 ```
-Hi Sanjaya-Danushka, you successfully authenticated, but AUR does not provide shell access.
+Hi sanjayadanushka, you successfully authenticated, but AUR does not provide shell access.
 ```
 
 ## Testing Before Push

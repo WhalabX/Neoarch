@@ -136,8 +136,8 @@ Customize NeoArch behavior:
 ### Getting Help
 
 - Check the [FAQ](faq.md)
-- Search existing [issues](https://github.com/Sanjaya-Danushka/Aurora/issues)
-- Ask questions in [discussions](https://github.com/Sanjaya-Danushka/Aurora/discussions)
+- Search existing [issues](https://github.com/neoarch712/Neoarch/issues)
+- Ask questions in [discussions](https://github.com/neoarch712/Neoarch/discussions)
 
 ## Best Practices
 

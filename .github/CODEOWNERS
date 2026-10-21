@@ -2,18 +2,18 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Global owners
-* @Sanjaya-Danushka
+* @neoarch712
 
 # Python source code
-*.py @Sanjaya-Danushka
+*.py @neoarch712
 
 # Documentation
-*.md @Sanjaya-Danushka
-docs/ @Sanjaya-Danushka
+*.md @neoarch712
+docs/ @neoarch712
 
 # Build and packaging
-neoarch-git/ @Sanjaya-Danushka
-scripts/ @Sanjaya-Danushka
+neoarch-git/ @neoarch712
+scripts/ @neoarch712
 
 # GitHub configuration
-.github/ @Sanjaya-Danushka
+.github/ @neoarch712

@@ -235,7 +235,7 @@ class ArchPkgManagerUniGetUI(_ViewsMixin, _OperationsMixin, _BundlesMixin, _Sear
                 'version': preview_up.strip(),
                 'name': preview_up.strip(),
                 'body': '',
-                'html_url': 'https://github.com/Sanjaya-Danushka/Neoarch/releases/latest',
+                'html_url': 'https://github.com/neoarch712/Neoarch/releases/latest',
             }
             WhatIsNewDialog([], mode='update', latest=info,
                             parent=self).exec()

@@ -10,6 +10,18 @@ dialog shows after an update.
 
 ---
 
+## 3.4.3 — 2026-10-18
+
+### Improvements
+
+- **NeoArch has a new home.** The project now lives at
+  `github.com/neoarch712/Neoarch`. Every in-app link — the update check, the
+  About and Help pages, the sponsors link — and the AUR package sources point
+  at the new repository, so update notifications and `yay -S neoarch` keep
+  working.
+
+---
+
 ## 3.4.2 — 2026-10-18
 
 ### Bug Fixes
