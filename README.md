@@ -7,10 +7,10 @@
 <br/>
 
 [![AUR](https://img.shields.io/badge/AUR-neoarch-00BFAE?style=flat-square&labelColor=161B22&logo=archlinux&logoColor=white)](https://aur.archlinux.org/packages/neoarch)
-[![Version](https://img.shields.io/github/v/release/Sanjaya-Danushka/Neoarch?style=flat-square&label=Version&color=00BFAE&labelColor=161B22)](https://github.com/Sanjaya-Danushka/Neoarch/releases)
-[![Stars](https://img.shields.io/github/stars/Sanjaya-Danushka/Neoarch?style=flat-square&label=Stars&color=00BFAE&labelColor=161B22)](https://github.com/Sanjaya-Danushka/Neoarch/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/Sanjaya-Danushka/Neoarch?style=flat-square&label=Last%20commit&color=00BFAE&labelColor=161B22)](https://github.com/Sanjaya-Danushka/Neoarch/commits/dev)
-[![License](https://img.shields.io/github/license/Sanjaya-Danushka/Neoarch?style=flat-square&label=License&color=00BFAE&labelColor=161B22)](LICENSE)
+[![Version](https://img.shields.io/github/v/release/neoarch712/Neoarch?style=flat-square&label=Version&color=00BFAE&labelColor=161B22)](https://github.com/neoarch712/Neoarch/releases)
+[![Stars](https://img.shields.io/github/stars/neoarch712/Neoarch?style=flat-square&label=Stars&color=00BFAE&labelColor=161B22)](https://github.com/neoarch712/Neoarch/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/neoarch712/Neoarch?style=flat-square&label=Last%20commit&color=00BFAE&labelColor=161B22)](https://github.com/neoarch712/Neoarch/commits/dev)
+[![License](https://img.shields.io/github/license/neoarch712/Neoarch?style=flat-square&label=License&color=00BFAE&labelColor=161B22)](LICENSE)
 
 </div>
 
@@ -20,7 +20,7 @@
 > **One app for everything you install.** Search, install, update, and clean across **pacman, AUR (live search), Flatpak, and npm** — from a native PyQt6 desktop app or a headless `neo` CLI with `--json` automation.
 
 > [!NOTE]
-> **📖 Read before use** — the [Wiki](https://github.com/Sanjaya-Danushka/Neoarch/wiki) covers every feature with screenshots, tips, and a video tutorial. Start here before your first install. For the complete [feature overview → wiki/Features](https://github.com/Sanjaya-Danushka/Neoarch/wiki/Features).
+> **📖 Read before use** — the [Wiki](https://github.com/neoarch712/Neoarch/wiki) covers every feature with screenshots, tips, and a video tutorial. Start here before your first install. For the complete [feature overview → wiki/Features](https://github.com/neoarch712/Neoarch/wiki/Features).
 
 ---
 
@@ -47,7 +47,7 @@ the AUR**. Full capability list under <kbd>App features</kbd>;
 the complete CLI lives under <kbd>CLI reference</kbd>,
 and dependencies/source builds are in [Install](#install) below.
 
-> **💡 Save your setup for life** — NeoArch bundles let you capture every package you love into a portable bundle. Fresh install? One click brings your entire setup back. Share bundles with friends or sync them across your machines. [Learn more → Bundles](https://github.com/Sanjaya-Danushka/Neoarch/wiki/Bundles)
+> **💡 Save your setup for life** — NeoArch bundles let you capture every package you love into a portable bundle. Fresh install? One click brings your entire setup back. Share bundles with friends or sync them across your machines. [Learn more → Bundles](https://github.com/neoarch712/Neoarch/wiki/Bundles)
 
 ---
 
@@ -242,7 +242,7 @@ On Arch, system `pip` usually triggers `externally-managed-environment` — pref
 
 <a name="support"></a>
 
-<sub>Something missing or broken? [Open an issue](https://github.com/Sanjaya-Danushka/Neoarch/issues) — or [pull request](https://github.com/Sanjaya-Danushka/Neoarch/pulls) it.</sub>
+<sub>Something missing or broken? [Open an issue](https://github.com/neoarch712/Neoarch/issues) — or [pull request](https://github.com/neoarch712/Neoarch/pulls) it.</sub>
 
 <br/>
 
@@ -252,6 +252,6 @@ On Arch, system `pip` usually triggers `externally-managed-environment` — pref
 
 <a name="license"></a>
 
-<sub>GPL-3.0-or-later · [Project](https://github.com/Sanjaya-Danushka/Neoarch) · [Website](https://neoarch.dpdns.org/) · Built by [Sanjaya Danushka](https://github.com/Sanjaya-Danushka)</sub>
+<sub>GPL-3.0-or-later · [Project](https://github.com/neoarch712/Neoarch) · [Website](https://neoarch.dpdns.org/) · Built by [Sanjaya Danushka](https://github.com/neoarch712)</sub>
 
 </div>

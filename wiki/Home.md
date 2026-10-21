@@ -29,10 +29,10 @@ Welcome to the **NeoArch** wiki! A beautiful, unified GUI package manager for Ar
 
 ## 🚀 Quick Links
 
-- **[GitHub Repository](https://github.com/Sanjaya-Danushka/Neoarch)**
+- **[GitHub Repository](https://github.com/neoarch712/Neoarch)**
 - **[Website](https://sanjaya-danushka.github.io/Neoarch/)**
-- **[Report Issues](https://github.com/Sanjaya-Danushka/Neoarch/issues)**
-- **[Discussions](https://github.com/Sanjaya-Danushka/Neoarch/discussions)**
+- **[Report Issues](https://github.com/neoarch712/Neoarch/issues)**
+- **[Discussions](https://github.com/neoarch712/Neoarch/discussions)**
 
 ## 💡 Key Features
 
@@ -69,13 +69,13 @@ wiki/
 
 ## 🤝 Community
 
-- Join our [GitHub Discussions](https://github.com/Sanjaya-Danushka/Neoarch/discussions)
-- Report bugs on [GitHub Issues](https://github.com/Sanjaya-Danushka/Neoarch/issues)
-- Contribute code via [Pull Requests](https://github.com/Sanjaya-Danushka/Neoarch/pulls)
+- Join our [GitHub Discussions](https://github.com/neoarch712/Neoarch/discussions)
+- Report bugs on [GitHub Issues](https://github.com/neoarch712/Neoarch/issues)
+- Contribute code via [Pull Requests](https://github.com/neoarch712/Neoarch/pulls)
 
 ## 📝 License
 
-NeoArch is free software licensed under the [GNU General Public License v3.0 or later](https://github.com/Sanjaya-Danushka/Neoarch/blob/main/LICENSE)
+NeoArch is free software licensed under the [GNU General Public License v3.0 or later](https://github.com/neoarch712/Neoarch/blob/main/LICENSE)
 
 ---
 

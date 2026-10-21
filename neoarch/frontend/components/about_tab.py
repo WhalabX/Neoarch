@@ -25,12 +25,12 @@ from neoarch.resources.paths import (
 
 __all__ = ["AboutTab"]
 
-_REPO_URL = "https://github.com/Sanjaya-Danushka/Neoarch"
-_SPONSORS_URL = "https://github.com/sponsors/Sanjaya-Danushka"
+_REPO_URL = "https://github.com/neoarch712/Neoarch"
+_SPONSORS_URL = "https://github.com/sponsors/neoarch712"
 _BUYMEACOFFEE_URL = "https://www.buymeacoffee.com/sanjayadanushka"
 _WEBSITE_URL = "https://neoarch.dpdns.org"
 _AUR_URL = "https://aur.archlinux.org/packages/neoarch-git"
-_WIKI_URL = "https://github.com/Sanjaya-Danushka/Neoarch/wiki"
+_WIKI_URL = "https://github.com/neoarch712/Neoarch/wiki"
 
 _BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..")
 
@@ -1578,7 +1578,7 @@ class _CommunityTab(QWidget):
 
         fl.addWidget(_secondary_btn(
             _("\u2197 GitHub"),
-            lambda: _open_url("https://github.com/Sanjaya-Danushka")))
+            lambda: _open_url("https://github.com/neoarch712")))
         fl.addWidget(_secondary_btn(
             _("\u2197 Wiki"),
             lambda: _open_url(_WIKI_URL)))
