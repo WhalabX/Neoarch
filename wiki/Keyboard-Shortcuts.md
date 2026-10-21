@@ -12,6 +12,8 @@ main window unless a text field has focus.
 | `Ctrl+I` | Install the selected package(s) |
 | `Ctrl+U` | Update the selected package(s) |
 | `Ctrl+D` | Remove the selected package(s) |
+| `Ctrl+\`` | Show/hide the console output strip |
+| `Ctrl+Shift+\`` | Expand or restore the console to the full panel |
 | `F1` | Show help |
 | `F5` | Refresh the current view |
 | `Esc` | Clear the search / close the current dialog |

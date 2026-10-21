@@ -340,6 +340,9 @@ msgstr "अनाथ, कैश साफ़ करें और आर्क �
 msgid "Clear"
 msgstr "साफ़ करें"
 
+msgid "Clear console"
+msgstr "कंसोल साफ़ करें"
+
 msgid "Click \"Run Diagnostics\" to check your system"
 msgstr "अपना सिस्टम जांचने के लिए \"Run Diagnostics\" पर क्लिक करें"
 
@@ -375,6 +378,9 @@ msgstr "क्लाउड सिंक"
 
 msgid "Coffee fund ☕\nEvery cup keeps development going."
 msgstr "कॉफ़ी फ़ंड ☕\nहर कप विकास को आगे बढ़ाता है।"
+
+msgid "Collapse console"
+msgstr "कंसोल संक्षिप्त करें"
 
 msgid "Collect favourite packages into groups"
 msgstr "पसंदीदा पैकेज समूहों में एकत्र करें"
@@ -433,6 +439,9 @@ msgstr "कनेक्शन बहाल"
 msgid "Console Output"
 msgstr "कंसोल आउटपुट"
 
+msgid "Console output copied"
+msgstr "कंसोल आउटपुट कॉपी हो गया"
+
 msgid "Container Logs"
 msgstr "कंटेनर लॉग"
 
@@ -447,6 +456,9 @@ msgstr "AUR पैकेज इंस्टॉल करना जारी र�
 
 msgid "Contributing Guide ↗"
 msgstr "योगदान मार्गदर्शिका ↗"
+
+msgid "Contributing guide"
+msgstr "योगदान गाइड"
 
 msgid "Contributors & sponsors"
 msgstr "योगदानकर्ता और प्रायोजक"
@@ -466,8 +478,14 @@ msgstr "कॉपी"
 msgid "Copy Report"
 msgstr "रिपोर्ट कॉपी करें"
 
+msgid "Copy console output"
+msgstr "कंसोल आउटपुट कॉपी करें"
+
 msgid "Copy name"
 msgstr "नाम कॉपी करें"
+
+msgid "Could not copy the console output"
+msgstr "कंसोल आउटपुट कॉपी नहीं हो सका"
 
 msgid "Create"
 msgstr "बनाएं"
@@ -586,6 +604,9 @@ msgstr "निदान स्वचालित रूप से खुलत�
 msgid "Did you mean…"
 msgstr "क्या आपका मतलब…"
 
+msgid "Disable line wrap"
+msgstr "लाइन रैप बंद करें"
+
 msgid "Discover plugins and helper tools that extend what NeoArch can do."
 msgstr "वे प्लगिन और सहायक उपकरण खोजें जो NeoArch की क्षमताएँ बढ़ाते हैं।"
 
@@ -640,6 +661,9 @@ msgstr "वर्तमान स्रोत tarball डाउनलोड क�
 msgid "Downloading"
 msgstr "डाउनलोड हो रहा है"
 
+msgid "Drag to resize the console"
+msgstr "कंसोल का आकार बदलने के लिए खींचें"
+
 msgid "ERROR"
 msgstr "त्रुटि"
 
@@ -676,6 +700,9 @@ msgstr "हर परिणाम पर [aur] बैज — आधिकार�
 msgid "Everything about the app itself — versions, health and the people behind it."
 msgstr "ऐप के बारे में सब कुछ — संस्करण, स्वास्थ्य और इसके पीछे के लोग।"
 
+msgid "Expand console"
+msgstr "कंसोल विस्तारित करें"
+
 msgid "Explicit"
 msgstr "स्पष्ट"
 
@@ -705,6 +732,9 @@ msgstr "pacman, AUR, Flatpak और npm से कुछ भी खोजें"
 
 msgid "Find apps in large libraries fast"
 msgstr "बड़ी लाइब्रेरी में ऐप तेज़ी से खोजें"
+
+msgid "First Sponsor"
+msgstr "पहले प्रायोजक"
 
 msgid "Flatpak sandboxed · npm user mode."
 msgstr "Flatpak सैंडबॉक्स्ड · npm यूज़र मोड।"
@@ -738,6 +768,9 @@ msgstr "जनरेट करें"
 
 msgid "Generate codes others import instantly"
 msgstr "ऐसे कोड जनरेट करें जिन्हें अन्य तुरंत आयात करें"
+
+msgid "Get involved"
+msgstr "शामिल हों"
 
 msgid "Getting Started"
 msgstr "आरंभ करना"
@@ -813,6 +846,9 @@ msgstr "इंस्टॉल किए गए पैकेज छिपाए�
 
 msgid "High signal"
 msgstr "उच्च संकेत"
+
+msgid "His early backing kept NeoArch alive from day one — the very first person to sponsor the project."
+msgstr "शुरुआत से ही उनके सहयोग ने NeoArch को जीवित रखा — वे पहले व्यक्ति थे जिन्होंने इस परियोजना को प्रायोजित किया।"
 
 msgid "Hold package"
 msgstr "पैकेज होल्ड करें"
@@ -1069,6 +1105,9 @@ msgstr "कम संकेत"
 msgid "MB"
 msgstr "एमबी"
 
+msgid "Maintainer"
+msgstr "अनुरक्षक"
+
 msgid "Maintenance"
 msgstr "रखरखाव"
 
@@ -1252,6 +1291,9 @@ msgstr "कुछ भी इस पैकेज पर निर्भर नह
 msgid "Nothing starts until you confirm — never silently."
 msgstr "पुष्टि तक कुछ भी शुरू नहीं होता — कभी चुपचाप नहीं।"
 
+msgid "Nothing to copy"
+msgstr "कॉपी करने के लिए कुछ नहीं है"
+
 msgid "Nothing to purge (or failed)."
 msgstr "शुद्ध करने को कुछ नहीं (या विफल)।"
 
@@ -1399,6 +1441,9 @@ msgstr "सभी विराम"
 msgid "Pending counts stay visible in the sidebar"
 msgstr "लंबित गिनती साइडबार में दिखती रहती है"
 
+msgid "People"
+msgstr "लोग"
+
 msgid "Pick exactly which packages to upgrade"
 msgstr "वास्तव में किन पैकेजों को अपग्रेड करना है चुनें"
 
@@ -1440,6 +1485,9 @@ msgstr "किसी भी पंक्ति पर Install दबाएं, �
 
 msgid "Processing..."
 msgstr "संसाधित हो रहा है..."
+
+msgid "Project wiki"
+msgstr "प्रोजेक्ट विकी"
 
 msgid "Projects to update"
 msgstr "अपडेट किए जाने वाले प्रोजेक्ट"
@@ -1563,6 +1611,9 @@ msgstr "नाम बदलें"
 
 msgid "Report a Bug ↗"
 msgstr "बग रिपोर्ट करें ↗"
+
+msgid "Report an issue"
+msgstr "समस्या की सूचना दें"
 
 msgid "Repository Storage"
 msgstr "रिपॉज़िटरी भंडारण"
@@ -1831,6 +1882,15 @@ msgstr "स्रोत"
 msgid "Sources & Plugins"
 msgstr "स्रोत और प्लगिन"
 
+msgid "Sponsor"
+msgstr "प्रायोजक"
+
+msgid "Sponsor message"
+msgstr "प्रायोजक संदेश"
+
+msgid "Sponsors"
+msgstr "प्रायोजक"
+
 msgid "Start"
 msgstr "शुरू करें"
 
@@ -1872,6 +1932,9 @@ msgstr "sudo सत्र"
 
 msgid "Sun"
 msgstr "रवि"
+
+msgid "Support"
+msgstr "समर्थन"
 
 msgid "Support NeoArch"
 msgstr "NeoArch समर्थन करें"
@@ -1923,6 +1986,9 @@ msgstr "पैकेज डेटाबेस लॉक है। अन्य �
 
 msgid "The people behind NeoArch and how to support it"
 msgstr "NeoArch के पीछे के लोग और इसे कैसे समर्थन करें"
+
+msgid "The people who keep NeoArch afloat."
+msgstr "वे लोग जो NeoArch को चालू रखते हैं।"
 
 msgid "The red dot clears by itself when every check passes"
 msgstr "हर जाँच पारित होने पर लाल बिंदु स्वयं साफ़ हो जाता है"
@@ -2179,6 +2245,9 @@ msgstr "विंडो कोने की त्रिज्या"
 
 msgid "Window frame"
 msgstr "विंडो फ्रेम"
+
+msgid "Wrap long lines"
+msgstr "लंबी पंक्तियाँ लपेटें"
 
 msgid "You appear to be offline. Search results may be incomplete and installations may fail."
 msgstr "आप ऑफ़लाइन प्रतीत होते हैं। खोज परिणाम अधूरे हो सकते हैं और इंस्टॉल विफल हो सकते हैं।"

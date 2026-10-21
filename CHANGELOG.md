@@ -10,6 +10,34 @@ dialog shows after an update.
 
 ---
 
+## 3.4.4 — 2026-10-21
+
+### Improvements
+
+- **Thanks to our first sponsor.** Ferreol was the first person to back
+  NeoArch with real money, and his early support kept the project alive from
+  day one — long before anyone else put a coin in the jar. The About →
+  Community tab now gives him the spotlight he always deserved: a gold
+  "First Sponsor" badge, a portrait and a link to his
+  [sponsorship note](https://buymeacoffee.com/sanjayadanushka/c/20640619).
+
+- **The About → Community page was rebuilt.** The old page was a plain
+  single-column list whose cards were squeezed against the window edge by the
+  scrollbar. It is now a two-column layout that matches the rest of the app:
+  icon section headers, hairline-separated rows, rounded sponsor portraits
+  and quiet ghost buttons. Nothing is clipped and no scrollbar appears at the
+  smallest window the app allows.
+
+### New Features
+
+- **The console is a panel you can work in.** The log strip at the bottom of
+  the app can now be dragged to resize, remembers its height between runs,
+  and carries its own toolbar — maximize the panel over the package table,
+  copy the whole log, wrap long lines or clear it — instead of a single
+  toggle in the corner.
+
+---
+
 ## 3.4.3 — 2026-10-18
 
 ### Improvements

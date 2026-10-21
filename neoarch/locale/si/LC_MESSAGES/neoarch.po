@@ -340,6 +340,9 @@ msgstr "අනාථ පැකේජ, හැඹිලිය පිරිසි�
 msgid "Clear"
 msgstr "හිස් කරන්න"
 
+msgid "Clear console"
+msgstr "කොන්සෝලය පිරිසිදු කරන්න"
+
 msgid "Click \"Run Diagnostics\" to check your system"
 msgstr "ඔබේ පද්ධතිය පරීක්ෂා කිරීමට \"රෝග විනිශ්චය ධාවනය කරන්න\" ක්ලික් කරන්න"
 
@@ -375,6 +378,9 @@ msgstr "Cloud සමමුහුර්තකරණය"
 
 msgid "Coffee fund ☕\nEvery cup keeps development going."
 msgstr "කෝපි අරමුදල ☕\nසෑම කෝප්පයක්ම සංවර්ධනය ඉදිරියට ගෙන යයි."
+
+msgid "Collapse console"
+msgstr "කොන්සෝලය කුඩු කරන්න"
 
 msgid "Collect favourite packages into groups"
 msgstr "ප්‍රියතම පැකේජ කාණ්ඩවලට එක් කරන්න"
@@ -433,6 +439,9 @@ msgstr "සම්බන්ධතාව යථා තත්ත්වයට පත
 msgid "Console Output"
 msgstr "කොන්සෝල ප්රතිදානය"
 
+msgid "Console output copied"
+msgstr "කොන්සෝල ප්‍රතිදාන උපිරි කරන ලදී"
+
 msgid "Container Logs"
 msgstr "කන්ටේනර ලොග"
 
@@ -447,6 +456,9 @@ msgstr "AUR පැකේජ ස්ථාපනය කිරීම දිගට�
 
 msgid "Contributing Guide ↗"
 msgstr "දායකත්ව මාර්ගෝපදේශය ↗"
+
+msgid "Contributing guide"
+msgstr "දායකතා මාර්ගෝපදේශය"
 
 msgid "Contributors & sponsors"
 msgstr "දායකයින් සහ අනුග්‍රාහකයින්"
@@ -466,8 +478,14 @@ msgstr "පිටපත් කරන්න"
 msgid "Copy Report"
 msgstr "වාර්තාව පිටපත් කරන්න"
 
+msgid "Copy console output"
+msgstr "කොන්සෝල ප්‍රතිදාන උපිරි කරන්න"
+
 msgid "Copy name"
 msgstr "නම පිටපත් කරන්න"
+
+msgid "Could not copy the console output"
+msgstr "කොන්සෝල ප්‍රතිදාන උපිරි කළ නොහැකි විය"
 
 msgid "Create"
 msgstr "සාදන්න"
@@ -586,6 +604,9 @@ msgstr "රෝග විනිශ්චය ස්වයංක්‍රීයව 
 msgid "Did you mean…"
 msgstr "ඔබ අදහස් කළේ…"
 
+msgid "Disable line wrap"
+msgstr "රේඛා බිඳීම අක්‍රිය කරන්න"
+
 msgid "Discover plugins and helper tools that extend what NeoArch can do."
 msgstr "NeoArch හට කළ හැකි දේ දීර්ඝ කරන ප්ලගින සහ සහායක මෙවලම් සොයා ගන්න."
 
@@ -640,6 +661,9 @@ msgstr "වර්තමාන මූලාශ්ර tarball එක බාගන�
 msgid "Downloading"
 msgstr "බාගත වෙමින්"
 
+msgid "Drag to resize the console"
+msgstr "කොන්සෝලයේ ප්‍රමාණය වෙනස් කිරීමට ඇද ගන්න"
+
 msgid "ERROR"
 msgstr "ERROR"
 
@@ -676,6 +700,9 @@ msgstr "සෑම ප්රතිඵලයක්ම [aur] ලෙස සලකු
 msgid "Everything about the app itself — versions, health and the people behind it."
 msgstr "යෙදුම ගැන සියල්ල — අනුවාද, සෞඛ්‍ය සහ එයට පිටුබල දුන් පුද්ගලයින්."
 
+msgid "Expand console"
+msgstr "කොන්සෝලය පුළුල් කරන්න"
+
 msgid "Explicit"
 msgstr "පැහැදිලිව"
 
@@ -705,6 +732,9 @@ msgstr "pacman, AUR, Flatpak සහ npm වලින් ඕනෑම දෙය�
 
 msgid "Find apps in large libraries fast"
 msgstr "විශාල පුස්තකාලවල යෙදුම් ඉක්මනින් සොයන්න"
+
+msgid "First Sponsor"
+msgstr "පළමු අනුග්‍රහකය"
 
 msgid "Flatpak sandboxed · npm user mode."
 msgstr "Flatpak හුදකලා · npm පරිශීලක ආකාරය."
@@ -738,6 +768,9 @@ msgstr "උත්පාදනය කරන්න"
 
 msgid "Generate codes others import instantly"
 msgstr "අන් අය ක්ෂණිකව ආයාත කරන කේත ජනනය කරන්න"
+
+msgid "Get involved"
+msgstr "එකතු වන්න"
 
 msgid "Getting Started"
 msgstr "ආරම්භ කිරීම"
@@ -813,6 +846,9 @@ msgstr "ස්ථාපිත පැකේජ සඟවන්න"
 
 msgid "High signal"
 msgstr "අධි සංඥාව"
+
+msgid "His early backing kept NeoArch alive from day one — the very first person to sponsor the project."
+msgstr "ඔහුගේ මුල් අනුග්‍රහය නිසා දින එක සිටම NeoArch ජීවය තුළ පවර්තා කිරීය — ඔහු මෙම සැපියාවට අනුග්‍රහකත්වය ලබාදුන්නාකන පළමු පුද්ගලයා විය."
 
 msgid "Hold package"
 msgstr "පැකේජය රඳවන්න"
@@ -1069,6 +1105,9 @@ msgstr "අඩු සංඥාව"
 msgid "MB"
 msgstr "MB"
 
+msgid "Maintainer"
+msgstr "නිරක්ෂක"
+
 msgid "Maintenance"
 msgstr "නඩත්තු"
 
@@ -1252,6 +1291,9 @@ msgstr "මෙම පැකේජය මත කිසිවක් රඳා න�
 msgid "Nothing starts until you confirm — never silently."
 msgstr "ඔබ තහවුරු කරන තුරු කිසිවක් ආරම්භ නොවේ — කිසි විටෙක නිහඬව නොවේ."
 
+msgid "Nothing to copy"
+msgstr "උපිරි කිරීමට දෙයක් නොවේ"
+
 msgid "Nothing to purge (or failed)."
 msgstr "පවිත්‍ර කිරීමට කිසිවක් නැත (හෝ අසාර්ථක විය)."
 
@@ -1399,6 +1441,9 @@ msgstr "සියල්ල විරාමය"
 msgid "Pending counts stay visible in the sidebar"
 msgstr "බලා සිටින ගණන් පැති තීරුවේ දෘශ්‍යමානව පවතී"
 
+msgid "People"
+msgstr "මිනුවන්"
+
 msgid "Pick exactly which packages to upgrade"
 msgstr "උත්ශ්‍රේණි කළ යුතු පැකේජ හරියටම තෝරන්න"
 
@@ -1440,6 +1485,9 @@ msgstr "ඕනෑම පේළියක Install ඔබන්න, හෝ සි�
 
 msgid "Processing..."
 msgstr "සැකසෙමින්…"
+
+msgid "Project wiki"
+msgstr "ව්‍යාපෘති විකිය"
 
 msgid "Projects to update"
 msgstr "යාවත්කාලීන කළ යුතු ව්‍යාපෘති"
@@ -1563,6 +1611,9 @@ msgstr "නම වෙනස් කරන්න"
 
 msgid "Report a Bug ↗"
 msgstr "දෝෂයක් වාර්තා කරන්න ↗"
+
+msgid "Report an issue"
+msgstr "ගැටලුවක් වාර්තා කරන්න"
 
 msgid "Repository Storage"
 msgstr "ගබඩා තැන්පත් කිරීම"
@@ -1831,6 +1882,15 @@ msgstr "මූලාශ්‍ර"
 msgid "Sources & Plugins"
 msgstr "මූලාශ්‍ර සහ ප්ලගීන"
 
+msgid "Sponsor"
+msgstr "අනුග්‍රහකය"
+
+msgid "Sponsor message"
+msgstr "අනුග්‍රහක පණින්දය"
+
+msgid "Sponsors"
+msgstr "අනුග්‍රහකයෝ"
+
 msgid "Start"
 msgstr "ආරම්භ කරන්න"
 
@@ -1872,6 +1932,9 @@ msgstr "sudo සැසිය"
 
 msgid "Sun"
 msgstr "ඉරිදා"
+
+msgid "Support"
+msgstr "උදව්ව"
 
 msgid "Support NeoArch"
 msgstr "NeoArch සහාය දෙන්න"
@@ -1923,6 +1986,9 @@ msgstr "පැකේජ දත්ත ගබඩාව අගුළු දමා �
 
 msgid "The people behind NeoArch and how to support it"
 msgstr "NeoArch පිටුපස සිටින පුද්ගලයින් සහ එයට සහාය දෙන ආකාරය"
+
+msgid "The people who keep NeoArch afloat."
+msgstr "NeoArch එක මත රඳවාගන්නේ ඔහු."
 
 msgid "The red dot clears by itself when every check passes"
 msgstr "සෑම පරීක්ෂාවක්ම සමත් වූ විට රතු තිත තනිවම ඉවත් වේ"
@@ -2179,6 +2245,9 @@ msgstr "කවුළු කෙළවර අරය"
 
 msgid "Window frame"
 msgstr "කවුළු රාමුව"
+
+msgid "Wrap long lines"
+msgstr "දිග රේඛා එක් කරන්න"
 
 msgid "You appear to be offline. Search results may be incomplete and installations may fail."
 msgstr "ඔබ නොබැඳි බව පෙනේ. සෙවුම් ප්‍රතිඵල අසම්පූර්ණ විය හැකි අතර ස්ථාපන අසාර්ථක විය හැක."
