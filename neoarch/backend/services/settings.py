@@ -34,6 +34,8 @@ DEFAULT_SETTINGS = {
     'window_glow': False,
     'window_radius': 8,
     'window_opacity': 0.75,
+    # Console output strip (pixels)
+    'console_height': 150,
     # Notifications
     'notify_desktop': True,
     'notify_inapp': True,

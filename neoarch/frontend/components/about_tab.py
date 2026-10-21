@@ -8,7 +8,7 @@ import subprocess
 import platform as _platform
 
 from PyQt6.QtCore import Qt, QThread, QTimer, pyqtSignal, QRectF, QSize
-from PyQt6.QtGui import QPixmap, QPainter, QIcon
+from PyQt6.QtGui import QPixmap, QPainter, QPainterPath, QIcon
 from PyQt6.QtSvg import QSvgRenderer
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
@@ -35,12 +35,15 @@ _WIKI_URL = "https://github.com/neoarch712/Neoarch/wiki"
 # ── Sponsors ─────────────────────────────────────────────────────────
 # Ordered by contribution — the first entry is honoured as "First Sponsor".
 # Drop a portrait at assets/icons/app/<avatar> to use it; otherwise the
-# sponsor's initial is shown.
+# sponsor's initial is shown. A placeholder portrait can be generated with
+# scripts/generate_sponsor_avatar.py <Name>.
 _SPONSORS = (
     {
         "name": "Ferreol",
         "handle": "ferreol",
-        "url": "https://github.com/ferreol",
+        # His sponsorship comment — the words he left with the support.
+        "url": "https://buymeacoffee.com/sanjayadanushka/c/20640619",
+        "url_icon": "buymeacoffee.svg",
         "avatar": "sponsor-ferreol.png",
         "copy": "ferreol",
     },
@@ -52,10 +55,103 @@ def _sponsor_copy(key):
     if key == "ferreol":
         return {
             "role": _("First Sponsor"),
+            "link": _("Sponsor message"),
             "note": _("His early backing kept NeoArch alive from day one "
                       "\u2014 the very first person to sponsor the project."),
         }
-    return {"role": _("Sponsor"), "note": ""}
+    return {"role": _("Sponsor"), "link": "", "note": ""}
+
+
+def _sponsor_row(sponsor, is_first):
+    """Build one sponsor row: portrait, name, role chip, note and link."""
+    copy = _sponsor_copy(sponsor["copy"])
+    row = QHBoxLayout()
+    row.setSpacing(14)
+
+    # Portrait — a button, so the avatar opens the sponsor's page too.
+    av_path = os.path.join(
+        str(ASSETS_DIR), "icons", "app", sponsor.get("avatar", ""))
+    apm = QPixmap(av_path) if (
+        sponsor.get("avatar") and os.path.exists(av_path)
+    ) else QPixmap()
+
+    badge = QPushButton()
+    badge.setFixedSize(48, 48)
+    badge.setCursor(Qt.CursorShape.PointingHandCursor)
+    badge.setFlat(True)
+    if not apm.isNull():
+        badge.setIcon(QIcon(_circular_pixmap(apm, 44)))
+        badge.setIconSize(QSize(44, 44))
+        badge.setStyleSheet(
+            "QPushButton { border: none; border-radius: 24px;"
+            " background: transparent; padding: 0; }"
+            "QPushButton:hover { background: rgba(255, 255, 255, 0.06); }")
+    else:
+        badge.setText((sponsor["name"] or "?")[0].upper())
+        badge.setStyleSheet(
+            f"QPushButton {{ border: none; border-radius: 24px;"
+            f" background: {Colors.ACCENT_SOFT};"
+            f" color: {Colors.ACCENT}; font-size: {Fonts.LG};"
+            f" font-weight: {Fonts.BOLD}; padding: 0; }}"
+            "QPushButton:hover { background: rgba(255, 255, 255, 0.06); }")
+    if sponsor.get("url"):
+        link_label = copy.get("link") or _("\u2197 GitHub")
+        badge.setToolTip(link_label)
+        badge.clicked.connect(
+            lambda checked=False, u=sponsor["url"]: _open_url(u))
+    row.addWidget(badge, 0, Qt.AlignmentFlag.AlignTop)
+
+    info = QVBoxLayout()
+    info.setSpacing(4)
+
+    head = QHBoxLayout()
+    head.setSpacing(8)
+    name_lbl = QLabel(sponsor["name"])
+    name_lbl.setStyleSheet(
+        f"font-size: {Fonts.BASE}; font-weight: {Fonts.SEMI};"
+        f" color: {Colors.TEXT}; background: transparent; border: none;")
+    head.addWidget(name_lbl)
+    if sponsor.get("handle"):
+        handle_lbl = QLabel(f"@{sponsor['handle']}")
+        handle_lbl.setStyleSheet(
+            f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
+            " background: transparent; border: none;")
+        head.addWidget(handle_lbl)
+    head.addStretch()
+    # The first sponsor is marked in gold — the app's coffee colour — so
+    # the roll of honour reads at a glance.
+    if is_first:
+        role = _chip("\u2605 " + copy["role"], "#FFC832",
+                     "rgba(255, 200, 50, 0.12)", "rgba(255, 200, 50, 0.35)")
+    else:
+        role = _chip(copy["role"], Colors.ACCENT, Colors.ACCENT_SOFT,
+                     Colors.ACCENT_BORDER)
+    head.addWidget(role)
+    info.addLayout(head)
+
+    if copy["note"]:
+        note_lbl = QLabel(copy["note"])
+        note_lbl.setWordWrap(True)
+        note_lbl.setMaximumWidth(560)
+        note_lbl.setStyleSheet(
+            f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
+            " background: transparent; border: none;")
+        info.addWidget(note_lbl)
+    row.addLayout(info, 1)
+
+    if sponsor.get("url"):
+        link = _secondary_btn(
+            copy.get("link") or _("\u2197 GitHub"),
+            lambda checked=False, u=sponsor["url"]: _open_url(u))
+        icon_name = sponsor.get("url_icon")
+        if icon_name:
+            icon_path = os.path.join(
+                str(ASSETS_DIR), "icons", "ui", icon_name)
+            if os.path.exists(icon_path):
+                link.setIcon(QIcon(icon_path))
+                link.setIconSize(QSize(15, 15))
+        row.addWidget(link, 0, Qt.AlignmentFlag.AlignTop)
+    return row
 
 
 _BASE_DIR = os.path.join(os.path.dirname(__file__), "..", "..")
@@ -150,6 +246,113 @@ def _card_body(text):
         f"font-size: {Fonts.BASE}; color: {Colors.TEXT_2};"
         " background: transparent; border: none;")
     return lbl
+
+
+# ── Community page pieces ───────────────────────────────────────────
+# Inline lucide-style stroke icons (24x24 viewBox).
+_ICON_USERS = (
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>'
+    '<circle cx="9" cy="7" r="4"/>'
+    '<path d="M22 21v-2a4 4 0 0 0-3-3.87"/>'
+    '<path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+)
+_ICON_HEART = (
+    '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3'
+    'c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5'
+    'c0 2.3 1.5 4.05 3 5.5l7 7Z"/>'
+)
+_ICON_COFFEE = (
+    '<path d="M10 2v2"/><path d="M14 2v2"/><path d="M6 2v2"/>'
+    '<path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4'
+    'V9a1 1 0 0 1 1-1h14a4 4 0 0 1 4 4v2a1 1 0 0 1-1 1h-1"/>'
+)
+_ICON_GIT = (
+    '<path d="M6 3v12"/><circle cx="18" cy="6" r="3"/>'
+    '<circle cx="6" cy="18" r="3"/>'
+    '<path d="M18 9a9 9 0 0 1-9 9"/>'
+)
+
+
+def _circular_pixmap(pm, size):
+    """Circular crop of *pm* — portraits read as avatars, not squares."""
+    if pm.isNull():
+        return pm
+    out = QPixmap(size, size)
+    out.fill(Qt.GlobalColor.transparent)
+    painter = QPainter(out)
+    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+    painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
+    scaled = pm.scaled(
+        size, size, Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+        Qt.TransformationMode.SmoothTransformation)
+    path = QPainterPath()
+    path.addEllipse(0, 0, size, size)
+    painter.setClipPath(path)
+    painter.drawPixmap(
+        -(scaled.width() - size) // 2, -(scaled.height() - size) // 2, scaled)
+    painter.end()
+    return out
+
+
+def _chip(text, color, background=None, border=None):
+    """Small pill — the DO / DON'T / WARNED look used across the app."""
+    pill = QLabel(text)
+    pill.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    pill.setStyleSheet(
+        f"font-size: {Fonts.XS}; font-weight: {Fonts.SEMI};"
+        f" color: {color}; background: {background or 'transparent'};"
+        f" border: 1px solid {border or color};"
+        f" border-radius: {Radii.FULL}px; padding: 2px 9px;")
+    return pill
+
+
+def _section_header(text, svg_body=None, icon_color=None):
+    """Uppercase section label (PEOPLE / SUPPORT / ...)."""
+    wrap = QWidget()
+    wrap.setStyleSheet("background: transparent;")
+    row = QHBoxLayout(wrap)
+    row.setContentsMargins(2, 0, 0, 0)
+    row.setSpacing(8)
+    if svg_body:
+        badge = QLabel()
+        badge.setFixedSize(18, 18)
+        badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        badge.setPixmap(_mac_icon_pixmap(
+            svg_body, 15, color=icon_color or Colors.TEXT_3))
+        row.addWidget(badge)
+    lbl = QLabel(text.upper())
+    lbl.setStyleSheet(
+        f"font-size: {Fonts.XS}; font-weight: {Fonts.BOLD};"
+        f" color: {Colors.TEXT_3}; letter-spacing: 1.2px;"
+        " background: transparent; border: none;")
+    row.addWidget(lbl)
+    row.addStretch()
+    return wrap
+
+
+def _icon_card(title, svg_body=None, icon_color=None):
+    """Card with a small icon badge + title header (Settings-style)."""
+    card = _card()
+    lay = QVBoxLayout(card)
+    lay.setContentsMargins(20, 18, 20, 20)
+    lay.setSpacing(14)
+
+    head = QHBoxLayout()
+    head.setSpacing(10)
+    if svg_body:
+        badge = QLabel()
+        badge.setFixedSize(28, 28)
+        badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        badge.setStyleSheet(
+            f"background: {Colors.SURFACE_2}; border: none;"
+            f" border-radius: {Radii.MD}px;")
+        badge.setPixmap(_mac_icon_pixmap(
+            svg_body, 15, color=icon_color or Colors.TEXT_2))
+        head.addWidget(badge)
+    head.addWidget(_card_title(title))
+    head.addStretch()
+    lay.addLayout(head)
+    return card, lay
 
 
 def _accent_btn(text, on_click):
@@ -1551,14 +1754,61 @@ class _CommunityTab(QWidget):
         scroll = _scroll_area()
         content = QWidget()
         cl = QVBoxLayout(content)
-        cl.setContentsMargins(0, 0, 0, 0)
-        cl.setSpacing(20)
+        # Right padding keeps the cards clear of the scrollbar.
+        cl.setContentsMargins(0, 0, 14, 0)
+        cl.setSpacing(18)
 
-        # ── Founder card ──
-        founder = _card()
-        fl = QHBoxLayout(founder)
-        fl.setContentsMargins(24, 22, 24, 22)
-        fl.setSpacing(16)
+        # Two columns — the people on the left, the ways to help on the
+        # right. Keeps the page short enough to fit without scrolling.
+        columns = QHBoxLayout()
+        columns.setSpacing(22)
+        left = QWidget()
+        left.setStyleSheet("background: transparent;")
+        left_lay = QVBoxLayout(left)
+        left_lay.setContentsMargins(0, 0, 0, 0)
+        left_lay.setSpacing(18)
+        right = QWidget()
+        right.setStyleSheet("background: transparent;")
+        right_lay = QVBoxLayout(right)
+        right_lay.setContentsMargins(0, 0, 0, 0)
+        right_lay.setSpacing(18)
+
+        left_lay.addWidget(_section_header(
+            _("People"), _ICON_USERS, Colors.TEXT_2))
+        left_lay.addWidget(self._maintainer_card())
+        left_lay.addWidget(_section_header(
+            _("Sponsors"), _ICON_HEART, "#FFC832"))
+        left_lay.addWidget(self._sponsors_card())
+        left_lay.addStretch(1)
+
+        right_lay.addWidget(_section_header(
+            _("Support"), _ICON_COFFEE, "#FFC832"))
+        right_lay.addWidget(self._support_card())
+        right_lay.addWidget(_section_header(
+            _("Get involved"), _ICON_GIT, Colors.TEXT_2))
+        right_lay.addWidget(self._involve_card())
+        right_lay.addStretch(1)
+
+        columns.addWidget(left, 1)
+        columns.addWidget(right, 1)
+        cl.addLayout(columns)
+
+        cl.addStretch(1)
+        scroll.setWidget(content)
+
+        outer = QVBoxLayout()
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.addWidget(scroll, 1)
+        layout.addLayout(outer, 1)
+
+    # ── cards ───────────────────────────────────────────────────────
+
+    def _maintainer_card(self):
+        """Who builds NeoArch — the founder / lead maintainer."""
+        card, lay = _icon_card(_("Maintainer"), _ICON_USERS, Colors.ACCENT)
+
+        row = QHBoxLayout()
+        row.setSpacing(14)
 
         avatar = QLabel()
         avatar.setFixedSize(56, 56)
@@ -1567,10 +1817,8 @@ class _CommunityTab(QWidget):
             str(ASSETS_DIR), "icons", "app", "developer.png")
         pm = QPixmap(dev_img) if os.path.exists(dev_img) else QPixmap()
         if not pm.isNull():
-            avatar.setPixmap(pm.scaled(
-                56, 56, Qt.AspectRatioMode.KeepAspectRatio,
-                Qt.TransformationMode.SmoothTransformation))
-            avatar.setStyleSheet("border-radius: 28px; border: none;")
+            avatar.setPixmap(_circular_pixmap(pm, 56))
+            avatar.setStyleSheet("border: none; background: transparent;")
         else:
             avatar.setText("SD")
             avatar.setStyleSheet(
@@ -1578,128 +1826,109 @@ class _CommunityTab(QWidget):
                 f" background: {Colors.ACCENT_SOFT};"
                 f" color: {Colors.ACCENT}; font-size: {Fonts.XL};"
                 f" font-weight: {Fonts.BOLD};")
-        fl.addWidget(avatar)
+        row.addWidget(avatar, 0, Qt.AlignmentFlag.AlignTop)
 
         info = QVBoxLayout()
-        info.setSpacing(2)
+        info.setSpacing(6)
         name_lbl = QLabel("Sanjaya Danushka")
         name_lbl.setStyleSheet(
             f"font-size: {Fonts.CARD_TITLE}; font-weight: {Fonts.BOLD};"
             f" color: {Colors.TEXT}; background: transparent; border: none;")
         info.addWidget(name_lbl)
-        role_lbl = QLabel(_("Founder \u00b7 Lead Developer"))
-        role_lbl.setStyleSheet(
-            f"font-size: {Fonts.SM}; font-weight: {Fonts.SEMI};"
-            f" color: {Colors.ACCENT}; background: transparent;"
-            " border: none;")
-        info.addWidget(role_lbl)
-        bio_lbl = QLabel(
-            _("Designs, builds and maintains every part of NeoArch."))
-        bio_lbl.setWordWrap(True)
-        bio_lbl.setStyleSheet(
-            f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
-            " background: transparent; border: none;")
-        info.addWidget(bio_lbl)
-        fl.addLayout(info, 1)
+        role = _chip(_("Founder \u00b7 Lead Developer"), Colors.ACCENT,
+                     Colors.ACCENT_SOFT, Colors.ACCENT_BORDER)
+        info.addWidget(role, 0, Qt.AlignmentFlag.AlignLeft)
+        info.addStretch()
+        row.addLayout(info, 1)
+        lay.addLayout(row)
 
-        fl.addWidget(_secondary_btn(
+        bio = QLabel(
+            _("Designs, builds and maintains every part of NeoArch."))
+        bio.setWordWrap(True)
+        bio.setMaximumWidth(400)
+        bio.setStyleSheet(
+            f"font-size: {Fonts.SM}; color: {Colors.TEXT_2};"
+            " background: transparent; border: none;")
+        lay.addWidget(bio)
+
+        actions = QHBoxLayout()
+        actions.setSpacing(10)
+        actions.addWidget(_secondary_btn(
             _("\u2197 GitHub"),
             lambda: _open_url("https://github.com/neoarch712")))
-        fl.addWidget(_secondary_btn(
+        actions.addWidget(_secondary_btn(
             _("\u2197 Wiki"),
             lambda: _open_url(_WIKI_URL)))
-        cl.addWidget(founder)
+        actions.addStretch()
+        lay.addLayout(actions)
+        return card
 
-        # ── Sponsors card ──
-        if _SPONSORS:
-            sponsors = _card()
-            svl = QVBoxLayout(sponsors)
-            svl.setContentsMargins(24, 22, 24, 22)
-            svl.setSpacing(16)
-            svl.addWidget(_card_title(_("Sponsors")))
+    def _sponsors_card(self):
+        """The sponsor roll — the first entry is the first sponsor."""
+        card, lay = _icon_card(_("Sponsors"), _ICON_HEART, "#FFC832")
 
-            for sponsor in _SPONSORS:
-                copy = _sponsor_copy(sponsor["copy"])
-                row = QHBoxLayout()
-                row.setSpacing(16)
+        sub = QLabel(_("The people who keep NeoArch afloat."))
+        sub.setWordWrap(True)
+        sub.setStyleSheet(
+            f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
+            " background: transparent; border: none;")
+        lay.addWidget(sub)
 
-                badge = QLabel()
-                badge.setFixedSize(48, 48)
-                badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                av_path = os.path.join(
-                    str(ASSETS_DIR), "icons", "app", sponsor.get("avatar", ""))
-                apm = QPixmap(av_path) if (
-                    sponsor.get("avatar") and os.path.exists(av_path)
-                ) else QPixmap()
-                if not apm.isNull():
-                    badge.setPixmap(apm.scaled(
-                        48, 48, Qt.AspectRatioMode.KeepAspectRatio,
-                        Qt.TransformationMode.SmoothTransformation))
-                    badge.setStyleSheet(
-                        "border-radius: 24px; border: none;")
-                else:
-                    badge.setText((sponsor["name"] or "?")[0].upper())
-                    badge.setStyleSheet(
-                        f"border-radius: 24px; border: none;"
-                        f" background: {Colors.ACCENT_SOFT};"
-                        f" color: {Colors.ACCENT}; font-size: {Fonts.XL};"
-                        f" font-weight: {Fonts.BOLD};")
-                row.addWidget(badge)
+        for index, sponsor in enumerate(_SPONSORS):
+            if index:
+                lay.addWidget(_sep())
+            lay.addLayout(_sponsor_row(sponsor, index == 0))
+        return card
 
-                info = QVBoxLayout()
-                info.setSpacing(2)
+    def _support_card(self):
+        """Ways to back the project, with the coffee QR."""
+        card, lay = _icon_card(_("Support NeoArch"), _ICON_COFFEE, "#FFC832")
 
-                head = QHBoxLayout()
-                head.setSpacing(8)
-                name_lbl = QLabel(sponsor["name"])
-                name_lbl.setStyleSheet(
-                    f"font-size: {Fonts.CARD_TITLE}; font-weight: {Fonts.BOLD};"
-                    f" color: {Colors.TEXT}; background: transparent;"
-                    " border: none;")
-                head.addWidget(name_lbl)
-                handle_lbl = QLabel(f"@{sponsor['handle']}")
-                handle_lbl.setStyleSheet(
-                    f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
-                    " background: transparent; border: none;")
-                head.addWidget(handle_lbl)
-                head.addStretch()
-                role_lbl = QLabel(copy["role"])
-                role_lbl.setStyleSheet(
-                    f"font-size: {Fonts.XS}; font-weight: {Fonts.SEMI};"
-                    f" color: {Colors.ACCENT}; background: {Colors.ACCENT_SOFT};"
-                    f" border-radius: {Radii.SM}px; padding: 3px 10px;")
-                head.addWidget(role_lbl)
-                info.addLayout(head)
-
-                if copy["note"]:
-                    note_lbl = QLabel(copy["note"])
-                    note_lbl.setWordWrap(True)
-                    note_lbl.setStyleSheet(
-                        f"font-size: {Fonts.SM}; color: {Colors.TEXT_3};"
-                        " background: transparent; border: none;")
-                    info.addWidget(note_lbl)
-                row.addLayout(info, 1)
-
-                row.addWidget(_secondary_btn(
-                    _("\u2197 GitHub"),
-                    lambda checked=False, u=sponsor["url"]: _open_url(u)))
-                svl.addLayout(row)
-
-            cl.addWidget(sponsors)
-
-        # ── Support card with QR ──
-        support = _card()
-        sl = QHBoxLayout(support)
-        sl.setContentsMargins(24, 22, 24, 22)
-        sl.setSpacing(24)
-
-        left = QVBoxLayout()
-        left.setSpacing(10)
-        left.addWidget(_card_title(_("Support NeoArch")))
-        left.addWidget(_card_body(
+        body = _card_body(
             _("NeoArch is free, open-source and developed independently by "
               "one person. If it saves you time, consider supporting its "
-              "continued development.")))
+              "continued development."))
+        body.setMaximumWidth(400)
+
+        # Body text beside the QR, the ways to help underneath.
+        top = QHBoxLayout()
+        top.setSpacing(18)
+        top.addWidget(body, 1)
+
+        qr = QLabel()
+        qr_path = os.path.join(str(ASSETS_DIR), "icons", "app", "qr-code.png")
+        qpm = QPixmap(qr_path) if os.path.exists(qr_path) else QPixmap()
+        if not qpm.isNull():
+            qr.setPixmap(qpm.scaled(
+                112, 112, Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation))
+            qr.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            qr.setStyleSheet(
+                f"background: #FFFFFF; border-radius: {Radii.MD}px;"
+                " padding: 8px;")
+            qr_frame = QVBoxLayout()
+            qr_frame.setSpacing(6)
+            qr_frame.addWidget(qr, 0, Qt.AlignmentFlag.AlignCenter)
+            cap = QLabel(_("Scan to buy me a coffee"))
+            cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            cap.setStyleSheet(
+                f"font-size: {Fonts.XS}; color: {Colors.TEXT_3};"
+                " background: transparent; border: none;")
+            qr_frame.addWidget(cap)
+        else:
+            note = QLabel(
+                _("Coffee fund \u2615\nEvery cup keeps development going."))
+            note.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            note.setWordWrap(True)
+            note.setStyleSheet(
+                f"font-size: {Fonts.SM}; color: {Colors.TEXT_2};"
+                f" background: {Colors.ACCENT_SOFT};"
+                f" border-radius: {Radii.MD}px; padding: 14px;")
+            qr_frame = QVBoxLayout()
+            qr_frame.addWidget(note)
+
+        top.addLayout(qr_frame, 0)
+        lay.addLayout(top)
 
         btn_row = QHBoxLayout()
         btn_row.setSpacing(10)
@@ -1734,69 +1963,41 @@ class _CommunityTab(QWidget):
             b.clicked.connect(lambda checked=False, u=url: _open_url(u))
             btn_row.addWidget(b)
         btn_row.addStretch()
-        left.addLayout(btn_row)
+        lay.addLayout(btn_row)
+        return card
 
-        qr = QLabel()
-        qr_path = os.path.join(str(ASSETS_DIR), "icons", "app", "qr-code.png")
-        qpm = QPixmap(qr_path) if os.path.exists(qr_path) else QPixmap()
-        if not qpm.isNull():
-            qr_frame = QVBoxLayout()
-            qr_frame.addWidget(qr, 0, Qt.AlignmentFlag.AlignCenter)
-            cap = QLabel(_("Scan to buy me a coffee"))
-            cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            cap.setStyleSheet(
-                f"font-size: {Fonts.XS}; color: {Colors.TEXT_3};"
-                " background: transparent; border: none;")
-            qr_frame.addWidget(cap)
-        else:
-            note = QLabel(
-                _("Coffee fund \u2615\nEvery cup keeps development going."))
-            note.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            note.setWordWrap(True)
-            note.setStyleSheet(
-                f"font-size: {Fonts.SM}; color: {Colors.TEXT_2};"
-                f" background: {Colors.ACCENT_SOFT};"
-                f" border-radius: {Radii.MD}px; padding: 14px;")
-            qr_frame = QVBoxLayout()
-            qr_frame.addWidget(note)
+    def _involve_card(self):
+        """Links for people who want to contribute."""
+        card = _card()
+        lay = QVBoxLayout(card)
+        lay.setContentsMargins(20, 6, 20, 6)
+        lay.setSpacing(0)
 
-        if not qpm.isNull():
-            qr.setPixmap(qpm.scaled(
-                140, 140, Qt.AspectRatioMode.KeepAspectRatio,
-                Qt.TransformationMode.SmoothTransformation))
-            qr.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            qr.setStyleSheet(
-                "background: #FFFFFF; border-radius:"
-                f" {Radii.MD}px; padding: 6px;")
-
-        sl.addLayout(left, 1)
-        sl.addLayout(qr_frame, 0)
-        cl.addWidget(support)
-
-        # ── Contributing line ──
-        contrib = _card()
-        cvl = QHBoxLayout(contrib)
-        cvl.setContentsMargins(20, 16, 20, 16)
-        cvl.setSpacing(12)
-        ct = QLabel(_("Want to improve NeoArch?"))
-        ct.setStyleSheet(
-            f"font-size: {Fonts.BASE}; font-weight: {Fonts.SEMI};"
-            f" color: {Colors.TEXT}; background: transparent;"
-            " border: none;")
-        cvl.addWidget(ct)
-        cvl.addStretch()
-        cvl.addWidget(_link_btn(
-            _("Contributing Guide \u2197"),
-            lambda: _open_url(f"{_REPO_URL}?tab=contributing-ov-file")))
-        cl.addWidget(contrib)
-
-        cl.addStretch(1)
-        scroll.setWidget(content)
-
-        outer = QVBoxLayout()
-        outer.setContentsMargins(0, 0, 0, 0)
-        outer.addWidget(scroll, 1)
-        layout.addLayout(outer, 1)
+        links = (
+            (_("Contributing guide"),
+             f"{_REPO_URL}?tab=contributing-ov-file"),
+            (_("Report an issue"), f"{_REPO_URL}/issues"),
+            (_("Project wiki"), _WIKI_URL),
+        )
+        for index, (title, url) in enumerate(links):
+            if index:
+                lay.addWidget(_sep())
+            row = QHBoxLayout()
+            row.setSpacing(12)
+            lbl = QLabel(title)
+            lbl.setStyleSheet(
+                f"font-size: {Fonts.BASE}; font-weight: {Fonts.MEDIUM};"
+                f" color: {Colors.TEXT}; background: transparent; border: none;")
+            row.addWidget(lbl)
+            row.addStretch()
+            row.addWidget(_link_btn(
+                _("Open") + " \u2197",
+                lambda checked=False, u=url: _open_url(u)))
+            wrap = QWidget()
+            wrap.setStyleSheet("background: transparent;")
+            wrap.setLayout(row)
+            lay.addWidget(wrap)
+        return card
 
 
 # ── Main AboutTab ──────────────────────────────────────────────────

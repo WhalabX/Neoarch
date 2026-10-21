@@ -340,6 +340,9 @@ msgstr "Limpe órfãos e cache e leia as notícias do Arch."
 msgid "Clear"
 msgstr "Limpar"
 
+msgid "Clear console"
+msgstr "Limpar console"
+
 msgid "Click \"Run Diagnostics\" to check your system"
 msgstr "Clique em \"Executar diagnóstico\" para verificar seu sistema"
 
@@ -375,6 +378,9 @@ msgstr "Sincronização na nuvem"
 
 msgid "Coffee fund ☕\nEvery cup keeps development going."
 msgstr "Fundo do café ☕\nCada xícara mantém o desenvolvimento em andamento."
+
+msgid "Collapse console"
+msgstr "Recolher console"
 
 msgid "Collect favourite packages into groups"
 msgstr "Agrupe pacotes favoritos em grupos"
@@ -433,6 +439,9 @@ msgstr "Conexão restaurada"
 msgid "Console Output"
 msgstr "Saída do console"
 
+msgid "Console output copied"
+msgstr "Saída do console copiada"
+
 msgid "Container Logs"
 msgstr "Logs do contêiner"
 
@@ -447,6 +456,9 @@ msgstr "Continuar instalando pacotes AUR?"
 
 msgid "Contributing Guide ↗"
 msgstr "Guia de contribuição ↗"
+
+msgid "Contributing guide"
+msgstr "Guia de contribuição"
 
 msgid "Contributors & sponsors"
 msgstr "Colaboradores e apoiadores"
@@ -466,8 +478,14 @@ msgstr "Copiar"
 msgid "Copy Report"
 msgstr "Copiar relatório"
 
+msgid "Copy console output"
+msgstr "Copiar saída do console"
+
 msgid "Copy name"
 msgstr "Copiar nome"
+
+msgid "Could not copy the console output"
+msgstr "Não foi possível copiar a saída do console"
 
 msgid "Create"
 msgstr "Criar"
@@ -586,6 +604,9 @@ msgstr "O diagnóstico abre automaticamente, listando cada dependência e o que 
 msgid "Did you mean…"
 msgstr "Você quis dizer…"
 
+msgid "Disable line wrap"
+msgstr "Desativar quebra de linha"
+
 msgid "Discover plugins and helper tools that extend what NeoArch can do."
 msgstr "Descubra plugins e ferramentas auxiliares que ampliam o que o NeoArch pode fazer."
 
@@ -640,6 +661,9 @@ msgstr "Baixar o tarball de origem atual"
 msgid "Downloading"
 msgstr "Baixando"
 
+msgid "Drag to resize the console"
+msgstr "Arraste para redimensionar o console"
+
 msgid "ERROR"
 msgstr "ERRO"
 
@@ -675,6 +699,9 @@ msgstr "Cada resultado é marcado com [aur] — nunca confundido com oficial."
 
 msgid "Everything about the app itself — versions, health and the people behind it."
 msgstr "Tudo sobre o aplicativo em si — versões, saúde e as pessoas por trás dele."
+
+msgid "Expand console"
+msgstr "Expandir console"
 
 msgid "Explicit"
 msgstr "Explícito"
@@ -741,6 +768,9 @@ msgstr "Gerar"
 
 msgid "Generate codes others import instantly"
 msgstr "Gere códigos que outros importam instantaneamente"
+
+msgid "Get involved"
+msgstr "Participe"
 
 msgid "Getting Started"
 msgstr "Primeiros passos"
@@ -1075,6 +1105,9 @@ msgstr "Sinal baixo"
 msgid "MB"
 msgstr "MB"
 
+msgid "Maintainer"
+msgstr "Mantenedor"
+
 msgid "Maintenance"
 msgstr "Manutenção"
 
@@ -1258,6 +1291,9 @@ msgstr "Nada depende deste pacote (ele não é necessário para nada instalado).
 msgid "Nothing starts until you confirm — never silently."
 msgstr "Nada começa até você confirmar — nunca silenciosamente."
 
+msgid "Nothing to copy"
+msgstr "Nada para copiar"
+
 msgid "Nothing to purge (or failed)."
 msgstr "Nada para purgar (ou falhou)."
 
@@ -1405,6 +1441,9 @@ msgstr "Pausar tudo"
 msgid "Pending counts stay visible in the sidebar"
 msgstr "Os contadores pendentes permanecem visíveis na barra lateral"
 
+msgid "People"
+msgstr "Pessoas"
+
 msgid "Pick exactly which packages to upgrade"
 msgstr "Escolha exatamente quais pacotes atualizar"
 
@@ -1446,6 +1485,9 @@ msgstr "Pressione Instalar em qualquer linha, ou Instalar todos os ausentes uma 
 
 msgid "Processing..."
 msgstr "Processando..."
+
+msgid "Project wiki"
+msgstr "Wiki do projeto"
 
 msgid "Projects to update"
 msgstr "Projetos a atualizar"
@@ -1569,6 +1611,9 @@ msgstr "Renomear"
 
 msgid "Report a Bug ↗"
 msgstr "Reportar um bug ↗"
+
+msgid "Report an issue"
+msgstr "Relatar um problema"
 
 msgid "Repository Storage"
 msgstr "Armazenamento de repositórios"
@@ -1840,6 +1885,9 @@ msgstr "Fontes e plugins"
 msgid "Sponsor"
 msgstr "Patrocinador"
 
+msgid "Sponsor message"
+msgstr "Mensagem do patrocinador"
+
 msgid "Sponsors"
 msgstr "Patrocinadores"
 
@@ -1884,6 +1932,9 @@ msgstr "Sessão sudo"
 
 msgid "Sun"
 msgstr "Dom"
+
+msgid "Support"
+msgstr "Apoio"
 
 msgid "Support NeoArch"
 msgstr "Apoiar o NeoArch"
@@ -1935,6 +1986,9 @@ msgstr "O banco de dados de pacotes está bloqueado. Feche outras ferramentas de
 
 msgid "The people behind NeoArch and how to support it"
 msgstr "As pessoas por trás do NeoArch e como apoiá-lo"
+
+msgid "The people who keep NeoArch afloat."
+msgstr "As pessoas que mantêm o NeoArch de pé."
 
 msgid "The red dot clears by itself when every check passes"
 msgstr "O ponto vermelho desaparece sozinho quando todas as verificações passam"
@@ -2191,6 +2245,9 @@ msgstr "Raio dos cantos da janela"
 
 msgid "Window frame"
 msgstr "Moldura da janela"
+
+msgid "Wrap long lines"
+msgstr "Quebrar linhas longas"
 
 msgid "You appear to be offline. Search results may be incomplete and installations may fail."
 msgstr "Você parece estar offline. Os resultados da pesquisa podem ficar incompletos e as instalações podem falhar."

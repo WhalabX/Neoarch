@@ -340,6 +340,9 @@ msgstr "清理孤立包和缓存，阅读 Arch 新闻。"
 msgid "Clear"
 msgstr "清除"
 
+msgid "Clear console"
+msgstr "清空控制台"
+
 msgid "Click \"Run Diagnostics\" to check your system"
 msgstr "点击“运行诊断”以检查你的系统"
 
@@ -375,6 +378,9 @@ msgstr "云端同步"
 
 msgid "Coffee fund ☕\nEvery cup keeps development going."
 msgstr "咖啡基金 ☕\n每一杯都让开发持续进行。"
+
+msgid "Collapse console"
+msgstr "折叠控制台"
 
 msgid "Collect favourite packages into groups"
 msgstr "将收藏的软件包分组收集"
@@ -433,6 +439,9 @@ msgstr "连接已恢复"
 msgid "Console Output"
 msgstr "控制台输出"
 
+msgid "Console output copied"
+msgstr "已复制控制台输出"
+
 msgid "Container Logs"
 msgstr "容器日志"
 
@@ -447,6 +456,9 @@ msgstr "继续安装 AUR 软件包？"
 
 msgid "Contributing Guide ↗"
 msgstr "贡献指南 ↗"
+
+msgid "Contributing guide"
+msgstr "贡献指南"
 
 msgid "Contributors & sponsors"
 msgstr "贡献者和赞助者"
@@ -466,8 +478,14 @@ msgstr "复制"
 msgid "Copy Report"
 msgstr "复制报告"
 
+msgid "Copy console output"
+msgstr "复制控制台输出"
+
 msgid "Copy name"
 msgstr "复制名称"
+
+msgid "Could not copy the console output"
+msgstr "无法复制控制台输出"
 
 msgid "Create"
 msgstr "创建"
@@ -586,6 +604,9 @@ msgstr "诊断会自动打开，列出每个依赖及其功能"
 msgid "Did you mean…"
 msgstr "你是要…"
 
+msgid "Disable line wrap"
+msgstr "关闭自动换行"
+
 msgid "Discover plugins and helper tools that extend what NeoArch can do."
 msgstr "发现可扩展 NeoArch 功能的插件和辅助工具。"
 
@@ -640,6 +661,9 @@ msgstr "下载当前源代码压缩包"
 msgid "Downloading"
 msgstr "正在下载"
 
+msgid "Drag to resize the console"
+msgstr "拖动以调整控制台大小"
+
 msgid "ERROR"
 msgstr "错误"
 
@@ -675,6 +699,9 @@ msgstr "每个结果都带有 [aur] 标记 — 绝不会与官方混淆。"
 
 msgid "Everything about the app itself — versions, health and the people behind it."
 msgstr "应用本身的全部信息 — 版本、健康和背后的开发人员。"
+
+msgid "Expand console"
+msgstr "展开控制台"
 
 msgid "Explicit"
 msgstr "显式"
@@ -741,6 +768,9 @@ msgstr "生成"
 
 msgid "Generate codes others import instantly"
 msgstr "生成其他人可即时导入的代码"
+
+msgid "Get involved"
+msgstr "参与进来"
 
 msgid "Getting Started"
 msgstr "入门指南"
@@ -1075,6 +1105,9 @@ msgstr "低信号"
 msgid "MB"
 msgstr "MB"
 
+msgid "Maintainer"
+msgstr "维护者"
+
 msgid "Maintenance"
 msgstr "维护"
 
@@ -1258,6 +1291,9 @@ msgstr "没有任何软件包依赖此包（已安装的内容都不需要它）
 msgid "Nothing starts until you confirm — never silently."
 msgstr "在你确认之前不会启动任何内容 — 绝不会静默进行。"
 
+msgid "Nothing to copy"
+msgstr "没有可复制的内容"
+
 msgid "Nothing to purge (or failed)."
 msgstr "没有要清除的内容（或已失败）。"
 
@@ -1405,6 +1441,9 @@ msgstr "全部暂停"
 msgid "Pending counts stay visible in the sidebar"
 msgstr "待处理数量在侧边栏中保持可见"
 
+msgid "People"
+msgstr "成员"
+
 msgid "Pick exactly which packages to upgrade"
 msgstr "精确选择要升级的软件包"
 
@@ -1446,6 +1485,9 @@ msgstr "按任意行的“安装”，或一键“安装所有缺失项”"
 
 msgid "Processing..."
 msgstr "处理中..."
+
+msgid "Project wiki"
+msgstr "项目 Wiki"
 
 msgid "Projects to update"
 msgstr "要更新的项目"
@@ -1569,6 +1611,9 @@ msgstr "重命名"
 
 msgid "Report a Bug ↗"
 msgstr "报告 Bug ↗"
+
+msgid "Report an issue"
+msgstr "报告问题"
 
 msgid "Repository Storage"
 msgstr "仓库存储"
@@ -1840,6 +1885,9 @@ msgstr "来源与插件"
 msgid "Sponsor"
 msgstr "赞助者"
 
+msgid "Sponsor message"
+msgstr "赞助者留言"
+
 msgid "Sponsors"
 msgstr "赞助者"
 
@@ -1884,6 +1932,9 @@ msgstr "sudo 会话"
 
 msgid "Sun"
 msgstr "周日"
+
+msgid "Support"
+msgstr "支持"
 
 msgid "Support NeoArch"
 msgstr "支持 NeoArch"
@@ -1935,6 +1986,9 @@ msgstr "软件包数据库已被锁定。请关闭其他软件包工具（pacman
 
 msgid "The people behind NeoArch and how to support it"
 msgstr "NeoArch 的幕后团队以及如何支持它"
+
+msgid "The people who keep NeoArch afloat."
+msgstr "让 NeoArch 持续前行的伙伴们。"
 
 msgid "The red dot clears by itself when every check passes"
 msgstr "当所有检查通过时，红点会自动消失"
@@ -2191,6 +2245,9 @@ msgstr "窗口圆角半径"
 
 msgid "Window frame"
 msgstr "窗口框架"
+
+msgid "Wrap long lines"
+msgstr "自动换行"
 
 msgid "You appear to be offline. Search results may be incomplete and installations may fail."
 msgstr "你似乎处于离线状态。搜索结果可能不完整，安装可能失败。"

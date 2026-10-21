@@ -231,9 +231,31 @@ On Arch, system `pip` usually triggers `externally-managed-environment` — pref
 
 ---
 
+<a name="sponsors"></a>
+
+## Sponsors &amp; thank you
+
+<a href="https://buymeacoffee.com/sanjayadanushka/c/20640619">
+  <img src="assets/icons/app/sponsor-ferreol.png" width="96" height="96" alt="Ferreol" style="border-radius:50%;border:1px solid #30363d" />
+</a>
+
+### ⭐ Our first sponsor — Ferreol
+
+**Thank you, Ferreol.** You were the very first person to back NeoArch, and
+your early support kept the project alive from day one — long before anyone
+else put a coin in the jar. Every release since has been built on top of
+that backing.
+
+Your words live on in [this sponsorship note](https://buymeacoffee.com/sanjayadanushka/c/20640619) —
+the very same page the app's About → Community tab links to. If you would
+like to join him and keep NeoArch independent and ad-free, you can
+[buy the project a coffee](https://www.buymeacoffee.com/sanjayadanushka).
+
+---
+
 ## Credits &amp; acknowledgment
 
-- **Ferreol** — our first sponsor ([@ferreol](https://github.com/ferreol)). His early backing kept NeoArch alive from day one, long before anyone else backed the project. Thank you.
+- **Ferreol** — our first sponsor, and the reason this project is still here. See [Sponsors](#sponsors--thank-you) for the full thank-you.
 - **ArchCanary** — the PKGBUILD security scanner is built on rule sets ported from [ArchCanary](https://github.com/musqz/archcanary) (MIT) by [musqz](https://github.com/musqz), our pre-install scan gate. Thanks for the groundwork.
 - Built on the shoulders of the Arch Linux ecosystem — **pacman**, **AUR helpers** (yay, paru), **Flatpak**, **npm**, **PyQt6**, and the snapshot backends **Timeshift** &amp; **Snapper**.
 

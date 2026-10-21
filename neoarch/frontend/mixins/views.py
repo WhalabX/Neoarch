@@ -18,7 +18,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt, QTimer, QSize, QItemSelectionModel
 from PyQt6.QtGui import (
     QFont, QColor, QPixmap, QPainter, QPainterPath, QIcon,
-    QTextCursor,
+    QTextCursor, QKeySequence, QShortcut,
 )
 
 from neoarch.resources.paths import PROJECT_ROOT
@@ -145,10 +145,41 @@ class _ViewsMixin:
         content = self.create_content_area()
         body_layout.addWidget(content, 1)
 
+        self._setup_console_shortcuts()
+
         wrapper_layout.addWidget(body, 1)
 
         # Ensure proper sizing
         self.adjustSize()
+
+    def _setup_console_shortcuts(self):
+        """Keyboard shortcuts for the console strip.
+
+        ``Ctrl+``` shows/hides the console, ``Ctrl+Shift+``` grows it to
+        fill the panel (or restores the dragged height).
+        """
+        # A language change rebuilds the whole UI — drop the shortcuts of
+        # the previous build so they don't fire twice.
+        for shortcut in getattr(self, '_console_shortcuts', None) or []:
+            try:
+                shortcut.setEnabled(False)
+                shortcut.deleteLater()
+            except Exception:
+                pass
+        shortcuts = []
+        try:
+            toggle = QShortcut(QKeySequence("Ctrl+`"), self)
+            toggle.setContext(Qt.ShortcutContext.WindowShortcut)
+            toggle.activated.connect(self.toggle_console)
+            shortcuts.append(toggle)
+
+            expand = QShortcut(QKeySequence("Ctrl+Shift+`"), self)
+            expand.setContext(Qt.ShortcutContext.WindowShortcut)
+            expand.activated.connect(self.toggle_console_expanded)
+            shortcuts.append(expand)
+        except Exception:
+            pass
+        self._console_shortcuts = shortcuts
 
     def rebuild_ui(self):
         """Recreate the whole UI so every page re-renders with the current
@@ -1458,25 +1489,35 @@ class _ViewsMixin:
         self.console_toggle_btn.setGraphicsEffect(btn_shadow)
         self.packages_panel_layout.addWidget(self.console_toggle_btn, alignment=Qt.AlignmentFlag.AlignRight)
 
-        # Console Output
-        self.console_label = QLabel(_("Console Output"))
-        self.console_label.setObjectName("sectionLabel")
-        self.packages_panel_layout.addWidget(self.console_label)
+        # Console Output — a resizable strip (drag grip + header actions).
+        from neoarch.frontend.components.console_panel import (
+            CONSOLE_DEFAULT_HEIGHT, CONSOLE_MIN_HEIGHT, ConsolePanel)
+
+        self.console_panel = ConsolePanel(icon_provider=self.get_svg_icon)
+        self.console_panel.heightChanged.connect(self._on_console_height_changed)
+        self.console_panel.expandedChanged.connect(self._on_console_expanded_changed)
+        self.console_panel.statusMessage.connect(self._on_console_status_message)
+        self.packages_panel_layout.addWidget(self.console_panel)
+        self._console_expanded = False
+
+        # Backwards-compatible handles used across the app:
+        #   self.console       -> the whole console strip (show/hide)
+        #   self.console_label -> the console header (title + action buttons)
+        self.console = self.console_panel
+        self.console_label = self.console_panel.header
+
+        # Restore the height the user picked last time.
+        try:
+            stored = int(self.settings.get('console_height',
+                                          CONSOLE_DEFAULT_HEIGHT)
+                         or CONSOLE_DEFAULT_HEIGHT)
+        except Exception:
+            stored = CONSOLE_DEFAULT_HEIGHT
+        self.console_panel.set_height(max(CONSOLE_MIN_HEIGHT, stored))
+
         # Hidden by default; shown via the bottom-right toggle
         try:
             self.console_label.setVisible(False)
-        except Exception:
-            pass
-
-        self.console = QTextEdit()
-        self.console.setReadOnly(True)
-        self.console.setMaximumHeight(150)
-        try:
-            self.console.document().setMaximumBlockCount(500)
-        except Exception:
-            pass
-        self.packages_panel_layout.addWidget(self.console)
-        try:
             self.console.setVisible(False)
         except Exception:
             pass
@@ -2518,6 +2559,11 @@ class _ViewsMixin:
                 self.console.setVisible(True)
             except Exception:
                 pass
+        # Keep the expanded console consistent with the freshly switched view
+        try:
+            self._sync_console_expanded_state()
+        except Exception:
+            pass
 
     def _apply_common_table_style(self):
         self.package_table.setShowGrid(False)
@@ -4321,6 +4367,13 @@ class _ViewsMixin:
         except Exception:
             pass
 
+        # Re-apply the expanded layout so the console keeps its room.
+        try:
+            self._apply_console_expanded_layout(
+                getattr(self, '_console_expanded', False))
+        except Exception:
+            pass
+
         try:
             if hasattr(self, 'console_toggle_btn'):
                 self.console_toggle_btn.setToolTip(_("Hide Console") if new_state else _("Show Console"))
@@ -4330,6 +4383,86 @@ class _ViewsMixin:
         try:
             if hasattr(self, 'large_search_box') and hasattr(self.large_search_box, 'recent_activity'):
                 self.large_search_box.recent_activity.setVisible(not new_state)
+        except Exception:
+            pass
+
+    # ── console sizing ─────────────────────────────────────────────
+
+    def _on_console_height_changed(self, height):
+        """Persist the console height the user dragged the strip to."""
+        try:
+            self.settings['console_height'] = int(height)
+        except Exception:
+            return
+        # Debounce the disk write — a drag emits a lot of updates.
+        try:
+            if getattr(self, '_console_save_timer', None) is None:
+                self._console_save_timer = QTimer(self)
+                self._console_save_timer.setSingleShot(True)
+                self._console_save_timer.setInterval(400)
+                self._console_save_timer.timeout.connect(self._save_console_height)
+            self._console_save_timer.start()
+        except Exception:
+            self._save_console_height()
+
+    def _save_console_height(self):
+        try:
+            self.save_settings()
+        except Exception:
+            pass
+
+    def _on_console_expanded_changed(self, expanded):
+        """Grow the console over the package table, or restore the layout."""
+        self._console_expanded = bool(expanded)
+        self._apply_console_expanded_layout(self._console_expanded)
+
+    def _apply_console_expanded_layout(self, expanded):
+        """Collapse the neighbouring widgets so the console can grow."""
+        try:
+            self.packages_panel_layout.setStretchFactor(self.console_panel,
+                                                        1 if expanded else 0)
+        except Exception:
+            pass
+        # Collapse (not hide) the neighbours: switch_view owns their
+        # visibility, we only take away their room.
+        for name in ('packages_content_area', 'large_search_box'):
+            widget = getattr(self, name, None)
+            if widget is None:
+                continue
+            try:
+                widget.setMaximumHeight(0 if expanded else 16777215)
+            except Exception:
+                pass
+        try:
+            self.console_panel.updateGeometry()
+            self.packages_panel_layout.invalidate()
+        except Exception:
+            pass
+
+    def _sync_console_expanded_state(self):
+        """Re-apply the expanded layout after the active view changed."""
+        if not getattr(self, '_console_expanded', False):
+            return
+        try:
+            if not self.console.isVisible():
+                # The new view hides the console — leave expanded mode.
+                self.console_panel.set_expanded(False)
+                return
+        except Exception:
+            return
+        self._apply_console_expanded_layout(True)
+
+    def _on_console_status_message(self, message):
+        """Surface a short console feedback message as a toast."""
+        try:
+            self._toast_notify(message, "info")
+        except Exception:
+            pass
+
+    def toggle_console_expanded(self):
+        """Grow the console to fill the panel, or restore its height."""
+        try:
+            self.console_panel.toggle_expanded()
         except Exception:
             pass
 
