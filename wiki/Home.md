@@ -30,7 +30,7 @@ Welcome to the **NeoArch** wiki! A beautiful, unified GUI package manager for Ar
 ## 🚀 Quick Links
 
 - **[GitHub Repository](https://github.com/neoarch712/Neoarch)**
-- **[Website](https://sanjaya-danushka.github.io/Neoarch/)**
+- **[Website](https://neoarch.dpdns.org)**
 - **[Report Issues](https://github.com/neoarch712/Neoarch/issues)**
 - **[Discussions](https://github.com/neoarch712/Neoarch/discussions)**
 
@@ -79,5 +79,5 @@ NeoArch is free software licensed under the [GNU General Public License v3.0 or 
 
 ---
 
-**Last Updated:** November 2025  
-**Version:** 1.2-beta
+**Last Updated:** October 2026  
+**Version:** 3.4.3
